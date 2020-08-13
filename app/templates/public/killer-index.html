@@ -2,7 +2,7 @@
 
 {% block title %}About{% endblock %}
 
-{% block regions %}
+{% block home %}
 		<!-- Start of BG Image Dark-->
 		<div class="fixed">
 
@@ -41,7 +41,7 @@
 					</div>
 					<p class="lead">Know their possible cards and be a step ahead!</p>
 				</div>
-				<a href="#regions" class="btn btn-nuno btn-sm">Let's Go!</a>
+				<a href="{{url_for('region_select', _anchor='regions')}}" class="btn btn-nuno btn-sm">Let's Go!</a>
 			</div> <!-- End Row Dark-->
 			<div class="fixed-wrap">
 				<div class="fixed-dark">
