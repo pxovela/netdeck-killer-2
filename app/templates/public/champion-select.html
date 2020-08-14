@@ -3,8 +3,43 @@
 {% block title %}Select Champions{% endblock %}
 
 {% block champions %}
-<h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, magnam sed quis, omnis exercitationem, nemo cumque facere aperiam laudantium non velit modi officia sequi repellendus quae vitae reprehenderit. Natus, repellendus!Lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni reiciendis quae consequatur incidunt iste nam animi ut a delectus dicta, molestiae, consequuntur architecto nisi sint harum impedit sunt similique doloremque.</h2>
-<h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, magnam sed quis, omnis exercitationem, nemo cumque facere aperiam laudantium non velit modi officia sequi repellendus quae vitae reprehenderit. Natus, repellendus!Lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni reiciendis quae consequatur incidunt iste nam animi ut a delectus dicta, molestiae, consequuntur architecto nisi sint harum impedit sunt similique doloremque.</h2>
-<h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, magnam sed quis, omnis exercitationem, nemo cumque facere aperiam laudantium non velit modi officia sequi repellendus quae vitae reprehenderit. Natus, repellendus!Lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni reiciendis quae consequatur incidunt iste nam animi ut a delectus dicta, molestiae, consequuntur architecto nisi sint harum impedit sunt similique doloremque.</h2>
-<h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, magnam sed quis, omnis exercitationem, nemo cumque facere aperiam laudantium non velit modi officia sequi repellendus quae vitae reprehenderit. Natus, repellendus!Lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni reiciendis quae consequatur incidunt iste nam animi ut a delectus dicta, molestiae, consequuntur architecto nisi sint harum impedit sunt similique doloremque.</h2>
+<div class="jumbotron m-0 py-5"> 
+   <div class="div container">
+      
+      <!--Start Page heading-->
+      <div class="col-12 os-animation" data-animation="animate__animated animate__fadeInUp">
+         <h3 class="heading">Select Champions</h3>
+         <div class="heading-underline"></div>
+      </div>
+      <!--end Page Heading-->
+      <form action="{{url_for('game', _anchor='cards')}}" method="POST">
+         <div class="row justify-content-center text-center os-animation" data-animation="animate__animated animate__fadeInUp">
+            <div class="col-md-9 col-lg-12 col-xl-11">
+               <div class="row">
+                  <div class="form-check justify-conent-center">
+
+                     {% for card in filtered_champions %}
+                        <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
+                           <label class="image-checkbox">
+                           <p class="p-0 m-0">{{ card['name'] }}</p>
+                           <img class="img-responsive" src="../../static/img/small cards/{{ card['cardCode'] }}_resized.jpg" />
+                           <input type="checkbox" name="champion_check" value="{{ card['name'] }}" />
+                           </label>
+                        </div>
+                     {% endfor %}
+                  </div>
+               </div> <!--End row-->
+             </div> <!--End col-->
+           </div> <!--End row justify content-->
+
+           <div class="col-12 text-center os-animation" data-animation="animate__animated animate__fadeInUp">
+            {% if region_error %}
+              <p class="p-3 mb-2 bg-danger text-white">{{region_error}}</p>
+            {% endif %}
+            <button class="btn btn-nuno btn-sm">Win the game!</button>
+          </div>
+
+</form> <!--End Form-->
+</div> <!--End Container-->
+</div> <!--End Jumbotron-->
 {% endblock %}
