@@ -517,6 +517,23 @@ a.top-scroll:hover {
    }
 }
 
+#mana_slider .slider-selection {
+	background: #4c70ec;
+}
+#mana_slider .slider-handle {
+   background: #2649dd;
+}
+#mana_slider .slider-tick.in-selection {
+	background: #4c70ec;
+}
+.row-first {
+   height:20%;
+ }
+ .container-fluid {
+   height: 100%;
+   padding-left: 0px;
+   padding-right: 0px;
+ }
 
 /*============ BOOTSTRAP BREAK POINTS:
 

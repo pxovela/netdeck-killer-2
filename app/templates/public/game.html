@@ -1,6 +1,51 @@
 {% extends "public/champion-select.html" %}
-
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" integrity="sha512-SZgE3m1he0aEF3tIxxnz/3mXu/u/wlMNxQSnE0Cni9j/O8Gs+TjM9tm1NX34nRQ7GiLwUEzwuE3Wv2FLz2667w==" crossorigin="anonymous" />
+{% endblock %}
 {% block title %}Win the game{% endblock %}
 
+
+
 {% block cards %}
+<div class="div container-fluid justify-conent-center">
+   <form action="">
+      <div class="row row-first">
+         <div class="col-sm-4 col-md-4">
+            <input id="mana" name = "mana" data-slider-id="mana_slider" type="text"/>
+            <input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text"/>
+         </div>
+      </div> <!-- End 1st row-->
+   </form> <!-- End form-->
+   <div class="row">
+      <div class="col-md-4">
+         
+      </div>
+
+   </div> <!-- End 2nd row-->
+</div> <!-- End contianer-->
+{% endblock %}
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
+<script>
+$("#mana").slider({
+   ticks: [0,1,2,3,4,5,6,7,8,9,10],
+   ticks_labels: ["0", "1", "2", "3", "4", "5","6","7","8","9","10"],
+   ticks_snap_bounds: 1,
+   min: 0,
+   max: 10,
+   step: 1,
+   value: 1,
+   handle: "square"
+});
+$("#spell_mana").slider({
+   ticks: [0,1,2,3],
+   ticks_labels: ["0", "1", "2", "3"],
+   ticks_snap_bounds: 1,
+   min: 0,
+   max: 3,
+   step: 1,
+   value: 0,
+   handle: "square"
+});
+</script>
 {% endblock %}
