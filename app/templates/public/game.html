@@ -7,22 +7,30 @@
 
 
 {% block cards %}
-<div class="div container-fluid justify-conent-center">
-   <form action="">
-      <div class="row row-first">
-         <div class="col-sm-4 col-md-4">
-            <input id="mana" name = "mana" data-slider-id="mana_slider" type="text"/>
-            <input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text"/>
+<div class="jumbotron m-0 py-5">
+   <div class="div container-fluid">
+      <form action="{{url_for('game_update', _anchor='cards')}}" method="POST">
+         <div class="row row-first">
+            <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
+               <p>
+                  <b class="m-3">Mana</b><input id="mana" name = "mana" data-slider-id="mana_slider" type="text"/>
+               </p>
+               <p>
+                  <b class="m-3">Spell Mana</b><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text"/>
+               </p>
+               <button class="btn btn-nuno btn-sm">Update</button>
+               
+            </div>
+         </div> <!-- End 1st row-->
+      </form> <!-- End form-->
+      <div class="row">
+         <div class="col-md-4">
+            
          </div>
-      </div> <!-- End 1st row-->
-   </form> <!-- End form-->
-   <div class="row">
-      <div class="col-md-4">
-         
-      </div>
 
-   </div> <!-- End 2nd row-->
-</div> <!-- End contianer-->
+      </div> <!-- End 2nd row-->
+   </div> <!-- End contianer-->
+</div><!--End Jumbotron-->
 {% endblock %}
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>

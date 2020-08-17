@@ -57,7 +57,20 @@ def champion_select():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
-   print(request.form.getlist('champion_check'))
+   if request.method == 'POST':
+      filtered_champions=session.get("filtered_champions",None)
+      if len(request.form.getlist('champion_check')) > 6:
+         champ_error = "Please select less than 6 champions!"
+         return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions, champ_error=champ_error)
+      else:
+         selected_champions = request.form.getlist('champion_check')
+         session["selected_champions"]=selected_champions
+         print(selected_champions)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
+
+@app.route('/game_update', methods=['GET', 'POST'])
+def game_update():
+   print(request.form.get('mana'))
    filtered_champions=session.get("filtered_champions",None)
    return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
 

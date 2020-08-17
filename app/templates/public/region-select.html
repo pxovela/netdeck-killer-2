@@ -29,13 +29,14 @@
             </div>
           </div> <!--End row-->
         </div> <!--End col-->
-      </div> <!--End row justify content-->
-      <div class="col-12 text-center os-animation" data-animation="animate__animated animate__fadeInUp">
-        {% if region_error %}
-          <p class="p-3 mb-2 bg-danger text-white">{{region_error}}</p>
-        {% endif %}
-        <button class="btn btn-nuno btn-sm">Select Champions</button>
-      </div>
+      
+        <div class="col-12 text-center">
+          {% if region_error %}
+            <p class="p-3 mb-2 bg-danger text-white">{{region_error}}</p>
+          {% endif %}
+          <button class="btn btn-nuno btn-sm">Select Champions</button>
+        </div>
+    </div> <!--End row justify content-->
 
 </form> <!--End Form-->
 </div> <!--End Container-->

@@ -528,6 +528,7 @@ a.top-scroll:hover {
 }
 .row-first {
    height:20%;
+   justify-content: center;
  }
  .container-fluid {
    height: 100%;
