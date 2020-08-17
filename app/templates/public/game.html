@@ -13,10 +13,10 @@
          <div class="row row-first">
             <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
                <p>
-                  <b class="m-3">Mana</b><input id="mana" name = "mana" data-slider-id="mana_slider" type="text"/>
+                  <b class="m-3">Mana</b><input id="mana" name = "mana" data-slider-id="mana_slider" type="text" data-slider-value="{{mana}}"/>
                </p>
                <p>
-                  <b class="m-3">Spell Mana</b><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text"/>
+                  <b class="m-3">Spell Mana</b><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text" data-slider-value="{{spell_mana}}"/>
                </p>
                <button class="btn btn-nuno btn-sm">Update</button>
                
@@ -42,7 +42,6 @@ $("#mana").slider({
    min: 0,
    max: 10,
    step: 1,
-   value: 1,
    handle: "square"
 });
 $("#spell_mana").slider({
@@ -52,7 +51,6 @@ $("#spell_mana").slider({
    min: 0,
    max: 3,
    step: 1,
-   value: 0,
    handle: "square"
 });
 </script>

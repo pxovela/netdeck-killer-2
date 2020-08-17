@@ -21,7 +21,27 @@ import json
 #list of all champs and regions
 regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles']
 
+# session secret key
 app.secret_key = 'dljsaklqka24e21cjn!Ew@@dsa5'
+
+#list of all current decks
+deck_details = pd.read_csv('app/static/deck_details.csv')
+
+def filter_decks(selected_champs):
+   if len(selected_champs) == 6:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'].isin(selected_champs)) & (deck_details['champion_4'].isin(selected_champs))]
+   elif len(selected_champs) == 5:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'].isin(selected_champs)) & (deck_details['champion_4'].isin(selected_champs))]
+   elif len(selected_champs) == 4:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'].isin(selected_champs)) & (deck_details['champion_4'].isin(selected_champs))]
+   elif len(selected_champs) == 3:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'].isin(selected_champs)) & (deck_details['champion_4'] == "None")]
+   elif len(selected_champs) == 2:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'] == "None") & (deck_details['champion_4'] == "None")]
+   elif len(selected_champs) == 1:
+      return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'] == "None") & (deck_details['champion_3'] == "None") & (deck_details['champion_4'] == "None")]
+   elif len(selected_champs) == 0:
+      return deck_details[(deck_details['champion_1']=='None') & (deck_details['champion_2']=='None') & (deck_details['champion_3']=="None") & (deck_details['champion_4']=="None")]
 
 # create a main view
 @app.route('/')
@@ -58,21 +78,39 @@ def champion_select():
 @app.route('/game', methods=['GET', 'POST'])
 def game():
    if request.method == 'POST':
-      filtered_champions=session.get("filtered_champions",None)
+      # get the list of filtered champs
+      filtered_champions = session.get("filtered_champions", None)
+      # check if user selected more than 6 champs and deal with it
       if len(request.form.getlist('champion_check')) > 6:
          champ_error = "Please select less than 6 champions!"
          return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions, champ_error=champ_error)
+      # if no issues with champs, load initial game view with starting values
       else:
+         # get list of selected champs
          selected_champions = request.form.getlist('champion_check')
-         session["selected_champions"]=selected_champions
+         session["selected_champions"] = selected_champions
+         # filter possible decks by selected champions
+         potential_decks = filter_decks(selected_champions)
+         print(potential_decks)
+         #set initial values for mana and spell mana
+         session['mana'] = 1
+         mana = session.get("mana", None)
+         session['spell_mana'] = 0
+         spell_mana = session.get("spell_mana", None)
          print(selected_champions)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
+         return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana)
 
 @app.route('/game_update', methods=['GET', 'POST'])
 def game_update():
+   # update mana values
+   session['mana'] = request.form.get('mana')
+   mana = session.get("mana", None)
+   session['spell_mana'] = request.form.get('spell_mana')
+   spell_mana = session.get("spell_mana", None)
    print(request.form.get('mana'))
    filtered_champions=session.get("filtered_champions",None)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana)
 
 req = ''
 opponent_played=set([])
