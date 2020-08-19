@@ -95,54 +95,98 @@ def game():
          session["selected_champions"] = selected_champions
          # filter possible decks by selected champions
          potential_decks = filter_decks(selected_champions)
-         total_matches = potential_decks['matches_played'].sum()
-         potential_deck_count = potential_decks['deck_code'].count()
-         df = []
-         for index, row in potential_decks.iterrows():
-            deck = LoRDeck.from_deckcode(row['deck_code'])
-            #iterate through each card of the deck
-            for card in deck.cards:
-               d = {
-                     'cardCode' : card.card_code,
-                     'count': card.count,
-                     'matches_played': row['matches_played']
-               }
-               df.append(d)
-         combined_deck = pd.DataFrame(df)
-         combined_cards = combined_deck[['cardCode', 'matches_played']].groupby(['cardCode']).sum()
-         combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
-         combined_cards.reset_index(level=0, inplace=True)
-         #combined_cards = combined_cards[['name', 'cost', 'type', 'supertype', 'spellSpeed','matches_played']]
-         combined_cards.sort_values(by=['cost'], inplace=True)
-         combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum() * 100
-         combined_cards['deck_chance'] = combined_cards['deck_chance'].round().astype(int).astype(str) + '%'
-         # filter out units and spells
-         units = combined_cards[combined_cards['type'] == 'Unit']
-         fast_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] != 'Slow')]
-         slow_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] == 'Slow')]
-         # Turn cards dataframes into json
-         units = json.loads(units.to_json(orient='records'))
-         fast_spells = json.loads(fast_spells.to_json(orient='records'))
-         slow_spells = json.loads(slow_spells.to_json(orient='records'))
-         #set initial values for mana and spell mana
-         session['mana'] = 1
-         mana = session.get("mana", None)
-         session['spell_mana'] = 0
-         spell_mana = session.get("spell_mana", None)
-         print(combined_cards['deck_chance'])
-         return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
+         if potential_decks.empty:
+            champ_error = "No deck info available on selected champions!"
+            print(champ_error)
+            return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions, champ_error=champ_error)
+         else:
+            total_matches = potential_decks['matches_played'].sum()
+            df = []
+            for index, row in potential_decks.iterrows():
+               deck = LoRDeck.from_deckcode(row['deck_code'])
+               #iterate through each card of the deck
+               for card in deck.cards:
+                  d = {
+                        'cardCode' : card.card_code,
+                        'count': card.count,
+                        'matches_played': row['matches_played']
+                  }
+                  df.append(d)
+            combined_deck = pd.DataFrame(df)
+            combined_cards = combined_deck[['cardCode', 'matches_played']].groupby(['cardCode']).sum()
+            combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
+            combined_cards.reset_index(level=0, inplace=True)
+            #combined_cards = combined_cards[['name', 'cost', 'type', 'supertype', 'spellSpeed','matches_played']]
+            combined_cards.sort_values(by=['cost'], inplace=True)
+            combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum() * 100
+            combined_cards['deck_chance'] = combined_cards['deck_chance'].round().astype(int).astype(str) + '%'
+            # filter out units and spells
+            units = combined_cards[combined_cards['type'] == 'Unit']
+            fast_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] != 'Slow')]
+            slow_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] == 'Slow')]
+            # set session values of probable cards
+            session['units'] = json.loads(units.to_json(orient='records'))
+            session['fast_spells'] = json.loads(fast_spells.to_json(orient='records'))
+            session['slow_spells'] = json.loads(slow_spells.to_json(orient='records'))
+            #set initial values for mana and spell mana
+            session['mana'] = 1
+            mana = session.get("mana", None)
+            session['spell_mana'] = 0
+            spell_mana = session.get("spell_mana", None)
+            # filter probable cards by mana values
+            if units.empty:
+               pass
+            else:
+               units = units[units['cost'] <= mana]
+
+            if fast_spells.empty:
+               pass
+            else:
+               fast_spells = fast_spells[(fast_spells['cost'] <= mana + spell_mana)]
+            
+            if slow_spells.empty:
+               pass
+            else:
+               slow_spells = slow_spells[(slow_spells['cost'] <= mana + spell_mana)]
+            # Turn cards dataframes into json
+            units = json.loads(units.to_json(orient='records'))
+            fast_spells = json.loads(fast_spells.to_json(orient='records'))
+            slow_spells = json.loads(slow_spells.to_json(orient='records'))
+            return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
    return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
 
 @app.route('/game_update', methods=['GET', 'POST'])
 def game_update():
-   # update mana values
+   # get and update mana values
    session['mana'] = request.form.get('mana')
    mana = session.get("mana", None)
    session['spell_mana'] = request.form.get('spell_mana')
    spell_mana = session.get("spell_mana", None)
-   print(request.form.get('mana'))
-   filtered_champions=session.get("filtered_champions",None)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana)
+   # laod all session values
+   filtered_champions = session.get("filtered_champions", None)
+   units = pd.DataFrame.from_dict(pd.json_normalize(session.get("units", None)), orient='columns')
+   fast_spells = pd.DataFrame.from_dict(pd.json_normalize(session.get("fast_spells", None)), orient='columns')
+   slow_spells = pd.DataFrame.from_dict(pd.json_normalize(session.get("slow_spells", None)), orient='columns')
+   # filter probable cards by mana values
+   if units.empty:
+      pass
+   else:
+      units = units[units['cost'] <= int(mana)]
+   
+   if fast_spells.empty:
+      pass
+   else:
+      fast_spells = fast_spells[(fast_spells['cost'] <= int(mana) + int(spell_mana))]
+   
+   if slow_spells.empty:
+      pass
+   else:
+      slow_spells = slow_spells[(slow_spells['cost'] <= int(mana) + int(spell_mana))]
+   # Turn cards dataframes into json
+   units = json.loads(units.to_json(orient='records'))
+   fast_spells = json.loads(fast_spells.to_json(orient='records'))
+   slow_spells = json.loads(slow_spells.to_json(orient='records'))
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
 
 req = ''
 opponent_played=set([])
