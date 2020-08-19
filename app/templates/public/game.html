@@ -24,21 +24,15 @@
          <div class="col">
             <h5 class="text-nuno">Units</h5>
             <div class="row">
-               <div class="col-6"><strong>Cards</strong></div>
-               <div class="col-3"><strong>Deck Probability</strong></div>
-               <div class="col-3"><strong>Draw %</strong></div>
+                  <div class='flex-grow-1'><strong>Cards</strong></div>
+                  <div><strong>Deck Probability:</strong></div>
+                  <div><strong>Draw %</strong></div>
             </div>
             <div class="row">
                {% for unit in units %}
-                  <div class="col-6">
-                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
-                  </div>
-                  <div class="col-3">
-                     <p>{{ unit['deck_chance'] }}</p>
-                  </div>
-                  <div class="col-3">
-                     <p>N/A %</p>
-                  </div>
+                  <div class='flex-grow-1 overflow-hidden'><img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" /></div>
+                  <div class='flex-grow-1 overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
+                  <div class='overflow-hidden'><p class="p-1">N/A %</p></div>
                {% endfor %}
             </div>
          </div> <!-- End Units column-->
