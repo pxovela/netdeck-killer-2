@@ -17,6 +17,7 @@ from app import add_cards as cards
 from io import StringIO
 import pandas as pd
 import json
+from lor_deckcodes import LoRDeck, CardCodeAndCount
 
 #list of all champs and regions
 regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles']
@@ -91,7 +92,24 @@ def game():
          session["selected_champions"] = selected_champions
          # filter possible decks by selected champions
          potential_decks = filter_decks(selected_champions)
-         print(potential_decks)
+         potential_deck_count = potential_decks['deck_code'].count()
+         df = []
+         for index, row in potential_decks.iterrows():
+            deck = LoRDeck.from_deckcode(row['deck_code'])
+            #iterate through each card of the deck
+            for card in deck.cards:
+               d = {
+                     'cardCode' : card.card_code,
+                     'count': card.count,
+                     'matches_played': row['matches_played']
+               }
+               df.append(d)
+         combined_deck = pd.DataFrame(df)
+         combined_cards = combined_deck[['cardCode', 'matches_played']].groupby(['cardCode']).sum()
+         combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
+         combined_cards = combined_cards[['name', 'cost', 'type', 'supertype', 'spellSpeed','matches_played']]
+         combined_cards.sort_values(by=['cost'], inplace=True)
+         print(combined_cards)
          #set initial values for mana and spell mana
          session['mana'] = 1
          mana = session.get("mana", None)
