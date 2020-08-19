@@ -8,10 +8,10 @@
 
 {% block cards %}
 <div class="jumbotron m-0 py-5">
-   <div class="div container-fluid">
-      <form action="{{url_for('game_update', _anchor='cards')}}" method="POST">
-         <div class="row row-first">
-            <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
+   <div class="div container-fluid">      
+      <div class="row row-first">
+         <div class="col p-0 nopad text-center d-inline">
+            <form action="{{url_for('game_update', _anchor='cards')}}" method="POST">
                <p>
                   <b class="m-3">Mana</b><input id="mana" name = "mana" data-slider-id="mana_slider" type="text" data-slider-value="{{mana}}"/>
                </p>
@@ -19,16 +19,75 @@
                   <b class="m-3">Spell Mana</b><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text" data-slider-value="{{spell_mana}}"/>
                </p>
                <button class="btn btn-nuno btn-sm">Update</button>
-               
+            </form> <!-- End form-->
+         </div> <!-- End form column-->
+         <div class="col">
+            <h5 class="text-nuno">Units</h5>
+            <div class="row">
+               <div class="col-6"><strong>Cards</strong></div>
+               <div class="col-3"><strong>Deck %</strong></div>
+               <div class="col-3"><strong>Draw %</strong></div>
             </div>
-         </div> <!-- End 1st row-->
-      </form> <!-- End form-->
-      <div class="row">
-         <div class="col-md-4">
-            
-         </div>
+            <div class="row">
+               {% for unit in units %}
+                  <div class="col-6">
+                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                  </div>
+                  <div class="col-3">
+                     <p>{{ unit['deck_chance'] }}</p>
+                  </div>
+                  <div class="col-3">
+                     <p>N/A %</p>
+                  </div>
+               {% endfor %}
+            </div>
+         </div> <!-- End Units column-->
+         <div class="col">
+            <h5 class="text-nuno">Fast+ Spells</h5>
+            <div class="row">
+               <div class="col-6"><strong>Cards</strong></div>
+               <div class="col-3"><strong>Deck %</strong></div>
+               <div class="col-3"><strong>Draw %</strong></div>
+            </div>
+            <div class="row">
+               {% for unit in fast_spells %}
+                  <div class="col-6">
+                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                  </div>
+                  <div class="col-3">
+                     <p>{{ unit['deck_chance'] }}</p>
+                  </div>
+                  <div class="col-3">
+                     <p>N/A %</p>
+                  </div>
+               {% endfor %}
+            </div>
+         </div> <!-- End Fast Spells column-->
 
-      </div> <!-- End 2nd row-->
+         <div class="col">
+            <h5 class="text-nuno">Slow Spell</h5>
+            <div class="row">
+               <div class="col-6"><strong>Cards</strong></div>
+               <div class="col-3"><strong>Deck %</strong></div>
+               <div class="col-3"><strong>Draw %</strong></div>
+            </div>
+            <div class="row">
+               {% for unit in slow_spells %}
+                  <div class="col-6">
+                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                  </div>
+                  <div class="col-3">
+                     <p>{{ unit['deck_chance'] }}</p>
+                  </div>
+                  <div class="col-3">
+                     <p>N/A %</p>
+                  </div>
+               {% endfor %}
+            </div>
+         </div> <!-- End Slow Spells column-->
+
+      </div> <!-- End 1st row-->
+      
    </div> <!-- End contianer-->
 </div><!--End Jumbotron-->
 {% endblock %}
