@@ -10,74 +10,90 @@
 <div class="jumbotron m-0 py-5">
    <div class="div container-fluid">      
       <div class="row row-first">
-         <div class="col p-0 nopad text-center d-inline">
+
+         <div class="d-flex flex-column p-0 nopad text-center">
             <form action="{{url_for('game_update', _anchor='cards')}}" method="POST">
-               <p>
-                  <b class="m-3">Mana</b><input id="mana" name = "mana" data-slider-id="mana_slider" type="text" data-slider-value="{{mana}}"/>
-               </p>
-               <p>
-                  <b class="m-3">Spell Mana</b><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text" data-slider-value="{{spell_mana}}"/>
-               </p>
-               <button class="btn btn-nuno btn-sm">Update</button>
+               <div class="d-flex flex-row justify-content-center">
+                  <div class="d-flex flex-column">
+                     <b class="m-3">Mana</b>
+                     <div><input id="mana" name = "mana" data-slider-id="mana_slider" type="text" data-slider-value="{{mana}}"/></div>
+                  </div>
+                  <div class="d-flex flex-column">
+                     <b class="m-3">Spell Mana</b>
+                     <div><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text" data-slider-value="{{spell_mana}}"/></div>
+                  </div>
+               </div>
+
+               <div class="d-flex flex-row justify-content-center">
+                  <button class="btn btn-nuno btn-sm">Update</button>
+               </div>
+               
             </form> <!-- End form-->
          </div> <!-- End form column-->
-         <div class="col">
-            <h5 class="text-nuno">Units</h5>
-            <div class="row">
-                  <div class='flex-grow-1'><strong>Cards</strong></div>
-                  <div><strong>Deck Probability:</strong></div>
-                  <div><strong>Draw %</strong></div>
+
+         <div class="d-flex flex-column p-1">
+            <h5 class="text-nuno align-self-center">Units</h5>
+
+            <div class="d-flex flex-row">
+               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
             </div>
-            <div class="row">
-               {% for unit in units %}
-                  <div class='flex-grow-1 overflow-hidden'><img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" /></div>
-                  <div class='flex-grow-1 overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
-                  <div class='overflow-hidden'><p class="p-1">N/A %</p></div>
-               {% endfor %}
-            </div>
+            
+            {% for unit in units %}
+               <div class="d-flex flex-row">
+                  <div class='flex-fill overflow-hidden'>
+                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
+                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                     </a>
+                  </div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+               </div>
+            {% endfor %}
          </div> <!-- End Units column-->
-         <div class="col">
-            <h5 class="text-nuno">Fast+ Spells</h5>
-            <div class="row">
-               <div class="col-6"><strong>Cards</strong></div>
-               <div class="col-3"><strong>Deck Probability</strong></div>
-               <div class="col-3"><strong>Draw %</strong></div>
+         <div class="d-flex flex-column p-1">
+            <h5 class="text-nuno align-self-center">Fast+ Spells</h5>
+
+            <div class="d-flex flex-row">
+               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
             </div>
-            <div class="row">
-               {% for unit in fast_spells %}
-                  <div class="col-6">
-                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+
+            {% for unit in fast_spells %}
+               <div class="d-flex flex-row">
+                  <div class='flex-fill overflow-hidden'>
+                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
+                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                     </a>
                   </div>
-                  <div class="col-3">
-                     <p>{{ unit['deck_chance'] }}</p>
-                  </div>
-                  <div class="col-3">
-                     <p>N/A %</p>
-                  </div>
-               {% endfor %}
-            </div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+               </div>
+            {% endfor %}
          </div> <!-- End Fast Spells column-->
 
-         <div class="col">
-            <h5 class="text-nuno">Slow Spells</h5>
-            <div class="row">
-               <div class="col-6"><strong>Cards</strong></div>
-               <div class="col-3"><strong>Deck Probability</strong></div>
-               <div class="col-3"><strong>Draw %</strong></div>
+         <div class="d-flex flex-column p-1">
+            <h5 class="text-nuno align-self-center">Slow Spells</h5>
+
+            <div class="d-flex flex-row">
+               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
             </div>
-            <div class="row">
-               {% for unit in slow_spells %}
-                  <div class="col-6">
-                     <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+
+            {% for unit in slow_spells %}
+               <div class="d-flex flex-row">
+                  <div class='flex-fill overflow-hidden'>
+                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
+                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                     </a>
                   </div>
-                  <div class="col-3">
-                     <p>{{ unit['deck_chance'] }}</p>
-                  </div>
-                  <div class="col-3">
-                     <p>N/A %</p>
-                  </div>
-               {% endfor %}
-            </div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+               </div>
+            {% endfor %}
          </div> <!-- End Slow Spells column-->
 
       </div> <!-- End 1st row-->
@@ -107,7 +123,8 @@ $("#mana").slider({
    min: 0,
    max: 10,
    step: 1,
-   handle: "square"
+   handle: "square",
+   orientation: 'vertical'
 });
 $("#spell_mana").slider({
    ticks: [0,1,2,3],
@@ -116,7 +133,8 @@ $("#spell_mana").slider({
    min: 0,
    max: 3,
    step: 1,
-   handle: "square"
+   handle: "square",
+   orientation: 'vertical'
 });
 </script>
 {% endblock %}

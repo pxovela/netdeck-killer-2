@@ -230,3 +230,18 @@ $(function () {
       }
   })
 });
+
+// js for hover image display
+$(".hover-image").mouseenter(function(){
+    if ($(this).parent('div').children('div.image').length) {
+        $(this).parent('div').children('div.image').show();
+    } else {
+        var image_name=$(this).data('image');
+        var imageTag='<div class="image" style="position:absolute;">'+'<img src="'+image_name+'" alt="image" height="300" />'+'</div>';
+        $(this).parent('div').append(imageTag);
+    }
+});
+
+$(".hover-image").mouseleave(function(){
+    $(this).parent('div').children('div.image').hide();
+});

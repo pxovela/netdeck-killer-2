@@ -535,6 +535,10 @@ a.top-scroll:hover {
    padding-left: 0px;
    padding-right: 0px;
  }
+.img-responsive .hover-image { 
+   display: none!important; 
+}
+.img-responsive:hover .hover-image { display:block; }
 
 /*============ BOOTSTRAP BREAK POINTS:
 
