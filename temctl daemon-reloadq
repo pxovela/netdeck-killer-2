@@ -1,0 +1,810 @@
+-- Logs begin at Wed 2020-08-19 15:05:03 UTC, end at Wed 2020-08-19 17:16:14 UTC. --
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Paths.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 5.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Timers.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 3.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Starting D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has begun execution
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has begun execution.
+-- 
+-- The job identifier is 15.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on GnuPG network certificate management daemon.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 13.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 12.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 11.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 10.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on GnuPG cryptographic agent and passphrase cache.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 7.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on debconf communication socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 14.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on REST API socket for snapd user session agent.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 9.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Listening on D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 15.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Sockets.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 6.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Basic System.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 2.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Main User Target.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 1.
+Aug 19 15:05:03 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Startup finished in 111ms.
+-- Subject: User manager start-up is now complete
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The user manager instance for user 1000 has been started. All services queued
+-- for starting have been started. Note that other services might still be starting
+-- up or be started at any later time.
+-- 
+-- Startup of the manager took 111141 microseconds.
+Aug 19 15:05:54 ubuntu-s-1vcpu-1gb-fra1-01 sudo[2273]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 15:05:58 ubuntu-s-1vcpu-1gb-fra1-01 sudo[2273]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 15:43:32 ubuntu-s-1vcpu-1gb-fra1-01 sudo[14353]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 15:43:36 ubuntu-s-1vcpu-1gb-fra1-01 sudo[14353]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 16:09:36 ubuntu-s-1vcpu-1gb-fra1-01 sudo[20237]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 16:09:41 ubuntu-s-1vcpu-1gb-fra1-01 sudo[20237]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 16:56:32 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21150]: [0;1;31m[0;1;39m[0;1;31melusive.service: Changing to the requested working directory failed: No such file or directory[0m
+Aug 19 16:56:32 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21150]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed at step CHDIR spawning /elusive/env/bin/uwsgi: No such file or directory[0m
+-- Subject: Process /elusive/env/bin/uwsgi could not be executed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The process /elusive/env/bin/uwsgi could not be executed and failed.
+-- 
+-- The error number returned by this process is ERRNO.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Stopped target Main User Target.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 31 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Stopped target Basic System.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 29 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Stopped target Paths.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 25 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Stopped target Sockets.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 32 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Stopped target Timers.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 36 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: dbus.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed D-Bus User Message Bus Socket.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 34 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: dirmngr.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed GnuPG network certificate management daemon.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 35 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: gpg-agent-browser.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 28 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: gpg-agent-extra.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 33 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: gpg-agent-ssh.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 27 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: gpg-agent.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed GnuPG cryptographic agent and passphrase cache.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 19 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: pk-debconf-helper.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed debconf communication socket.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 24 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: snapd.session-agent.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Closed REST API socket for snapd user session agent.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 22 and the job result is done.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Shutdown.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 18.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: systemd-exit.service: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Finished Exit the Session.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 17.
+Aug 19 16:58:06 ubuntu-s-1vcpu-1gb-fra1-01 systemd[2180]: Reached target Exit the Session.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 16.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Paths.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 5.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Timers.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 3.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Starting D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has begun execution
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has begun execution.
+-- 
+-- The job identifier is 10.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on GnuPG network certificate management daemon.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 12.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 9.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 7.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 11.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on GnuPG cryptographic agent and passphrase cache.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 15.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on debconf communication socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 13.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on REST API socket for snapd user session agent.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 14.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Listening on D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 10.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Sockets.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 6.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Basic System.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 2.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Main User Target.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 1.
+Aug 19 16:58:21 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Startup finished in 109ms.
+-- Subject: User manager start-up is now complete
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The user manager instance for user 1000 has been started. All services queued
+-- for starting have been started. Note that other services might still be starting
+-- up or be started at any later time.
+-- 
+-- Startup of the manager took 109373 microseconds.
+Aug 19 16:59:04 ubuntu-s-1vcpu-1gb-fra1-01 sudo[21337]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 16:59:09 ubuntu-s-1vcpu-1gb-fra1-01 sudo[21337]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 17:02:42 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21359]: [0;1;31m[0;1;39m[0;1;31melusive.service: Changing to the requested working directory failed: No such file or directory[0m
+Aug 19 17:02:42 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21359]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed at step CHDIR spawning /elusive/env/bin/uwsgi: No such file or directory[0m
+-- Subject: Process /elusive/env/bin/uwsgi could not be executed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The process /elusive/env/bin/uwsgi could not be executed and failed.
+-- 
+-- The error number returned by this process is ERRNO.
+Aug 19 17:03:15 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21410]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed to execute command: No such file or directory[0m
+Aug 19 17:03:15 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21410]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed at step EXEC spawning /home/pxovela/elusive/env/bin/uwsgi: No such file or directory[0m
+-- Subject: Process /home/pxovela/elusive/env/bin/uwsgi could not be executed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The process /home/pxovela/elusive/env/bin/uwsgi could not be executed and failed.
+-- 
+-- The error number returned by this process is ERRNO.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Stopped target Main User Target.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 27 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Stopped target Basic System.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 22 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Stopped target Paths.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 28 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Stopped target Sockets.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 19 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Stopped target Timers.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 32 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: dbus.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed D-Bus User Message Bus Socket.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 30 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: dirmngr.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed GnuPG network certificate management daemon.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 31 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: gpg-agent-browser.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 34 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: gpg-agent-extra.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 33 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: gpg-agent-ssh.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 21 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: gpg-agent.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed GnuPG cryptographic agent and passphrase cache.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 29 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: pk-debconf-helper.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed debconf communication socket.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 36 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: snapd.session-agent.socket: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Closed REST API socket for snapd user session agent.
+-- Subject: A stop job for unit UNIT has finished
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A stop job for unit UNIT has finished.
+-- 
+-- The job identifier is 35 and the job result is done.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Shutdown.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 18.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: systemd-exit.service: Succeeded.
+-- Subject: Unit succeeded
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The unit UNIT has successfully entered the 'dead' state.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Finished Exit the Session.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 17.
+Aug 19 17:09:05 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21231]: Reached target Exit the Session.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 16.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Reached target Paths.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 15.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Reached target Timers.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 3.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Starting D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has begun execution
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has begun execution.
+-- 
+-- The job identifier is 10.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on GnuPG network certificate management daemon.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 13.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 6.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 9.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 12.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on GnuPG cryptographic agent and passphrase cache.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 14.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on debconf communication socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 8.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on REST API socket for snapd user session agent.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 11.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Listening on D-Bus User Message Bus Socket.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 10.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Reached target Sockets.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 5.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Reached target Basic System.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 2.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Reached target Main User Target.
+-- Subject: A start job for unit UNIT has finished successfully
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- A start job for unit UNIT has finished successfully.
+-- 
+-- The job identifier is 1.
+Aug 19 17:11:55 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21652]: Startup finished in 121ms.
+-- Subject: User manager start-up is now complete
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The user manager instance for user 1000 has been started. All services queued
+-- for starting have been started. Note that other services might still be starting
+-- up or be started at any later time.
+-- 
+-- Startup of the manager took 121429 microseconds.
+Aug 19 17:14:00 ubuntu-s-1vcpu-1gb-fra1-01 sudo[21738]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 17:14:03 ubuntu-s-1vcpu-1gb-fra1-01 sudo[21738]: [0;1;39m[0;1;31m[0;1;39mpam_unix(sudo:auth): Couldn't open /etc/securetty: No such file or directory[0m
+Aug 19 17:15:57 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21750]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed to execute command: No such file or directory[0m
+Aug 19 17:15:57 ubuntu-s-1vcpu-1gb-fra1-01 systemd[21750]: [0;1;31m[0;1;39m[0;1;31melusive.service: Failed at step EXEC spawning /home/pxovela/elusive/env/bin/uwsgi: No such file or directory[0m
+-- Subject: Process /home/pxovela/elusive/env/bin/uwsgi could not be executed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+-- 
+-- The process /home/pxovela/elusive/env/bin/uwsgi could not be executed and failed.
+-- 
+-- The error number returned by this process is ERRNO.
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: [uWSGI] getting INI configuration from elusive.ini
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: *** Starting uWSGI 2.0.19.1 (64bit) on [Wed Aug 19 17:16:13 2020] ***
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: compiled with version: 9.3.0 on 19 August 2020 16:36:35
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: os: Linux-5.4.0-42-generic #46-Ubuntu SMP Fri Jul 10 00:24:02 UTC 2020
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: nodename: ubuntu-s-1vcpu-1gb-fra1-01
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: machine: x86_64
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: clock source: unix
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: detected number of CPU cores: 1
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: current working directory: /var/www/elusive/code
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: detected binary path: /var/www/elusive/code/env/bin/uwsgi
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: !!! no internal routing support, rebuild with pcre support !!!
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: your processes number limit is 3791
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: your memory page size is 4096 bytes
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: detected max file descriptor number: 1024
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: lock engine: pthread robust mutexes
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: thunder lock: disabled (you can enable it with --thunder-lock)
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: uwsgi socket 0 bound to UNIX address elusive.sock fd 3
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: Python version: 3.8.2 (default, Jul 16 2020, 14:00:26)  [GCC 9.3.0]
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: *** Python threads support is disabled. You can enable it with --enable-threads ***
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: Python main interpreter initialized at 0x55ee79f25dc0
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: your server socket listen backlog is limited to 100 connections
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: your mercy for graceful operations on workers is 60 seconds
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: mapped 437520 bytes (427 KB) for 5 cores
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: *** Operational MODE: preforking ***
+Aug 19 17:16:13 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: ENV is set to: production
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55ee79f25dc0 pid: 21801 (default app)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: *** uWSGI is running in multiple interpreter mode ***
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI master process (pid: 21801)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI worker 1 (pid: 21813, cores: 1)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI worker 2 (pid: 21814, cores: 1)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI worker 3 (pid: 21815, cores: 1)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI worker 4 (pid: 21816, cores: 1)
+Aug 19 17:16:14 ubuntu-s-1vcpu-1gb-fra1-01 uwsgi[21801]: spawned uWSGI worker 5 (pid: 21817, cores: 1)
