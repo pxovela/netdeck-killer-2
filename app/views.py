@@ -18,6 +18,7 @@ from io import StringIO
 import pandas as pd
 import json
 from lor_deckcodes import LoRDeck, CardCodeAndCount
+import scipy.stats as ss
 
 #list of all champs and regions
 regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles']
@@ -88,6 +89,22 @@ def wavg(group, avg_name, weight_name):
         return (d * w).sum() / w.sum()
     except ZeroDivisionError:
         return d.mean()
+# function to caclulate min probability
+def draw_min(group, copies, round_num):
+   no_mul = 4  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
+   return float(1 - mull_prob_0 * round_prob_0)
+
+def draw_max(group, copies, round_num):
+   no_mul = 8  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_0 = ss.hypergeom(40, copies, round_n).pmf(0)
+   return float(1 - mull_prob_0*round_prob_0)
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
@@ -131,14 +148,23 @@ def game():
             # calculate matches per card
             combined_cards = combined_deck[['cardCode', 'matches_played']].groupby(['cardCode']).sum()
             # calculate weighted average of card counts
-            combined_cards['weighted_cards'] = round(combined_deck_counts.groupby('cardCode').apply(wavg, 'count', 'matches_played'), 2)
+            combined_cards['weighted_cards'] = round(combined_deck_counts.groupby(['cardCode']).apply(wavg, 'count', 'matches_played'), 2)
+            # calculate draw probability
+            combined_cards.reset_index(level=0, inplace=True)
+            session['round_n'] = 1
+            round_n = session.get("round_n", None)
+            combined_cards['draw_min'] = combined_cards.groupby(['cardCode']).apply(draw_min, 'weighted_cards', round_n).reset_index()[0]
+            combined_cards['draw_max'] = combined_cards.groupby(['cardCode']).apply(draw_max, 'weighted_cards', round_n).reset_index()[0]
             # join card details like mana cost, etc
             combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
             combined_cards.reset_index(level=0, inplace=True)
             combined_cards.sort_values(by=['cost'], inplace=True)
             # calculate deck probability of each card
-            combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum() * 100
-            combined_cards['deck_chance'] = combined_cards['deck_chance'].round().astype(int).astype(str) + '%'
+            combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum()
+            # caclulate chance of having a card based on probabilty of drawing it + a chance to have the card in the deck
+            combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min']*100
+            combined_cards['chance_max'] = combined_cards['deck_chance'] * combined_cards['draw_max'] * 100
+            combined_cards['chance_string'] = combined_cards['chance_min'].round().astype(int).astype(str) + '-' + combined_cards['chance_max'].round().astype(int).astype(str)+ '%'
             # filter out units and spells
             units = combined_cards[combined_cards['type'] == 'Unit']
             fast_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] != 'Slow')]
@@ -148,9 +174,9 @@ def game():
             session['fast_spells'] = json.loads(fast_spells.to_json(orient='records'))
             session['slow_spells'] = json.loads(slow_spells.to_json(orient='records'))
             #set initial values for mana and spell mana
-            session['mana'] = 1
+            session['mana'] = 10
             mana = session.get("mana", None)
-            session['spell_mana'] = 0
+            session['spell_mana'] = 3
             spell_mana = session.get("spell_mana", None)
             # filter probable cards by mana values
             if units.empty:
@@ -171,8 +197,8 @@ def game():
             units = json.loads(units.to_json(orient='records'))
             fast_spells = json.loads(fast_spells.to_json(orient='records'))
             slow_spells = json.loads(slow_spells.to_json(orient='records'))
-            return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
+            return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count, round_n=round_n)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count,round_n=round_n)
 
 @app.route('/game_update', methods=['GET', 'POST'])
 def game_update():
@@ -181,6 +207,8 @@ def game_update():
    mana = session.get("mana", None)
    session['spell_mana'] = request.form.get('spell_mana')
    spell_mana = session.get("spell_mana", None)
+   session['round_n'] = request.form.get('round_n')
+   round_n = session.get("round_n", None)
    deck_count = session.get("deck_count", None)
    # laod all session values
    filtered_champions = session.get("filtered_champions", None)
@@ -191,22 +219,43 @@ def game_update():
    if units.empty:
       pass
    else:
+      # recalculate units draw probability
+      units['draw_min'] = units.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
+      units['draw_max'] = units.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
+      units.reset_index(level=0, inplace=True)
+      units['chance_min'] = units['deck_chance'] * units['draw_min'] * 100
+      units['chance_max'] = units['deck_chance'] * units['draw_max'] * 100
+      units['chance_string'] = units['chance_min'].round().astype(int).astype(str) + '-' + units['chance_max'].round().astype(int).astype(str)+ '%'
       units = units[units['cost'] <= int(mana)]
    
    if fast_spells.empty:
       pass
    else:
+      # recalculate fast_spells draw probability
+      fast_spells['draw_min'] = fast_spells.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
+      fast_spells['draw_max'] = fast_spells.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
+      fast_spells.reset_index(level=0, inplace=True)
+      fast_spells['chance_min'] = fast_spells['deck_chance'] * fast_spells['draw_min'] * 100
+      fast_spells['chance_max'] = fast_spells['deck_chance'] * fast_spells['draw_max'] * 100
+      fast_spells['chance_string'] = fast_spells['chance_min'].round().astype(int).astype(str) + '-' + fast_spells['chance_max'].round().astype(int).astype(str)+ '%'
       fast_spells = fast_spells[(fast_spells['cost'] <= int(mana) + int(spell_mana))]
    
    if slow_spells.empty:
       pass
    else:
+      # recalculate slow_spells draw probability
+      slow_spells['draw_min'] = slow_spells.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
+      slow_spells['draw_max'] = slow_spells.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
+      slow_spells.reset_index(level=0, inplace=True)
+      slow_spells['chance_min'] = slow_spells['deck_chance'] * slow_spells['draw_min'] * 100
+      slow_spells['chance_max'] = slow_spells['deck_chance'] * slow_spells['draw_max'] * 100
+      slow_spells['chance_string'] = slow_spells['chance_min'].round().astype(int).astype(str) + '-' + slow_spells['chance_max'].round().astype(int).astype(str)+ '%'
       slow_spells = slow_spells[(slow_spells['cost'] <= int(mana) + int(spell_mana))]
    # Turn cards dataframes into json
    units = json.loads(units.to_json(orient='records'))
    fast_spells = json.loads(fast_spells.to_json(orient='records'))
    slow_spells = json.loads(slow_spells.to_json(orient='records'))
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count, round_n=round_n)
 
 req = ''
 opponent_played=set([])

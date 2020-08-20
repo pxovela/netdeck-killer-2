@@ -25,9 +25,13 @@
                      <b class="m-3">Spell Mana</b>
                      <div><input id="spell_mana" name = "spell_mana" data-slider-id="mana_slider" type="text" data-slider-value="{{spell_mana}}"/></div>
                   </div>
+                  <div class="d-flex flex-column">
+                     <b class="m-3">Round</b>
+                     <div><input id="round_n" name = "round_n" data-slider-id="mana_slider" type="text" data-slider-value="{{round_n}}"/></div>
+                  </div>
                </div>
 
-               <div class="d-flex flex-row justify-content-center">
+               <div class="d-flex flex-row justify-content-center py-5">
                   <button class="btn btn-nuno btn-sm">Update</button>
                </div>
                
@@ -39,8 +43,7 @@
 
             <div class="d-flex flex-row">
                <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability:</strong></div>
             </div>
             
             {% for unit in units %}
@@ -50,8 +53,7 @@
                         <img class="img-responsive" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Units column-->
@@ -60,8 +62,7 @@
 
             <div class="d-flex flex-row">
                <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability:</strong></div>
             </div>
 
             {% for unit in fast_spells %}
@@ -71,8 +72,7 @@
                         <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Fast Spells column-->
@@ -82,8 +82,7 @@
 
             <div class="d-flex flex-row">
                <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Deck %:</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw %</strong></div>
+               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability</strong></div>
             </div>
 
             {% for unit in slow_spells %}
@@ -93,8 +92,7 @@
                         <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Slow Spells column-->
@@ -135,6 +133,16 @@ $("#spell_mana").slider({
    ticks_snap_bounds: 1,
    min: 0,
    max: 3,
+   step: 1,
+   handle: "square",
+   orientation: 'vertical'
+});
+$("#round_n").slider({
+   ticks: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+   ticks_labels: ["1", "2", "3", "4", "5","6","7","8","9","10" ,"11", "12", "13", "14", '15'],
+   ticks_snap_bounds: 1,
+   min: 1,
+   max: 15,
    step: 1,
    handle: "square",
    orientation: 'vertical'
