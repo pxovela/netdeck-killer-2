@@ -62,6 +62,7 @@ def champion_select():
          render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions)
    return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions)
 
+# function to filter decks -- Probably can do something shorter than this mess
 def filter_decks(selected_champs):
    selected_regions = session.get("selected_regions", None)
    if len(selected_champs) == 6:
@@ -78,6 +79,15 @@ def filter_decks(selected_champs):
       return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'] == "None") & (deck_details['champion_3'] == "None") & (deck_details['champion_4'] == "None") & (deck_details['region_1'].isin(selected_regions)) & (deck_details['region_2'].isin(selected_regions))]
    elif len(selected_champs) == 0:
       return deck_details[(deck_details['champion_1']=='None') & (deck_details['champion_2']=='None') & (deck_details['champion_3']=="None") & (deck_details['champion_4']=="None") & (deck_details['region_1'].isin(selected_regions)) & (deck_details['region_2'].isin(selected_regions))]
+
+# function to calculate weighted average card counts
+def wavg(group, avg_name, weight_name):
+    d = group[avg_name]
+    w = group[weight_name]
+    try:
+        return (d * w).sum() / w.sum()
+    except ZeroDivisionError:
+        return d.mean()
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
@@ -101,6 +111,8 @@ def game():
             return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions, champ_error=champ_error)
          else:
             total_matches = potential_decks['matches_played'].sum()
+            deck_count = str(potential_decks['deck_code'].count())
+            session["deck_count"] = deck_count
             df = []
             for index, row in potential_decks.iterrows():
                deck = LoRDeck.from_deckcode(row['deck_code'])
@@ -113,11 +125,18 @@ def game():
                   }
                   df.append(d)
             combined_deck = pd.DataFrame(df)
+            # add up the same card numbers
+            combined_deck_counts = combined_deck[['cardCode', 'count', 'matches_played']].groupby(['cardCode', 'count']).sum()
+            combined_deck_counts = combined_deck_counts.reset_index()
+            # calculate matches per card
             combined_cards = combined_deck[['cardCode', 'matches_played']].groupby(['cardCode']).sum()
+            # calculate weighted average of card counts
+            combined_cards['weighted_cards'] = round(combined_deck_counts.groupby('cardCode').apply(wavg, 'count', 'matches_played'), 2)
+            # join card details like mana cost, etc
             combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
             combined_cards.reset_index(level=0, inplace=True)
-            #combined_cards = combined_cards[['name', 'cost', 'type', 'supertype', 'spellSpeed','matches_played']]
             combined_cards.sort_values(by=['cost'], inplace=True)
+            # calculate deck probability of each card
             combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum() * 100
             combined_cards['deck_chance'] = combined_cards['deck_chance'].round().astype(int).astype(str) + '%'
             # filter out units and spells
@@ -152,8 +171,8 @@ def game():
             units = json.loads(units.to_json(orient='records'))
             fast_spells = json.loads(fast_spells.to_json(orient='records'))
             slow_spells = json.loads(slow_spells.to_json(orient='records'))
-            return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
+            return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
 
 @app.route('/game_update', methods=['GET', 'POST'])
 def game_update():
@@ -162,6 +181,7 @@ def game_update():
    mana = session.get("mana", None)
    session['spell_mana'] = request.form.get('spell_mana')
    spell_mana = session.get("spell_mana", None)
+   deck_count = session.get("deck_count", None)
    # laod all session values
    filtered_champions = session.get("filtered_champions", None)
    units = pd.DataFrame.from_dict(pd.json_normalize(session.get("units", None)), orient='columns')
@@ -186,7 +206,7 @@ def game_update():
    units = json.loads(units.to_json(orient='records'))
    fast_spells = json.loads(fast_spells.to_json(orient='records'))
    slow_spells = json.loads(slow_spells.to_json(orient='records'))
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells)
+   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count)
 
 req = ''
 opponent_played=set([])

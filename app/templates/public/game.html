@@ -7,8 +7,11 @@
 
 
 {% block cards %}
+{% if deck_count %}
+<div class="p-2 mb-0 bg-dark text-white">{{ deck_count }} potential decks found. Displaying combined stats bellow:</div>
+{% endif %}
 <div class="jumbotron m-0 py-5">
-   <div class="div container-fluid">      
+   <div class="div container-fluid">
       <div class="row row-first">
 
          <div class="d-flex flex-column p-0 nopad text-center">
@@ -42,13 +45,13 @@
             
             {% for unit in units %}
                <div class="d-flex flex-row">
-                  <div class='flex-fill overflow-hidden'>
+                  <div class='flex-fill overflow-hidden px-2 py-1'>
                      <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
-                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
+                        <img class="img-responsive" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Units column-->
@@ -68,8 +71,8 @@
                         <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Fast Spells column-->
@@ -90,8 +93,8 @@
                         <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
                      </a>
                   </div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">{{ unit['deck_chance'] }}</p></div>
-                  <div class='flex-fill overflow-hidden'><p class="p-1">N/A %</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['deck_chance'] }}</p></div>
+                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">N/A %</p></div>
                </div>
             {% endfor %}
          </div> <!-- End Slow Spells column-->
