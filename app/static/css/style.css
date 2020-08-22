@@ -538,8 +538,54 @@ a.top-scroll:hover {
 .img-responsive .hover-image { 
    display: none!important; 
 }
-.img-responsive:hover .hover-image { display:block; }
+.img-responsive:hover .hover-image { 
+   display:block;
+}
+.test-row {
+   padding-bottom: 0.1rem;
+}
+.test_card {
+   justify-content: start;
+   align-items: center;
+   color: white;
+   border-radius: 7px;
+   width: 100%;
+   line-height: 100%;
+   text-shadow: .1rem .1rem .5rem black;
+   font-size: 0.8rem;
+}
+.test-responsive {
+   display: none!important;
+   position: absolute;
+   top: 40px;
+   z-index: 9999;
+ }
+ .test_card:hover .test-responsive {
+   display: block!important;
+ }
+.test_box {
+   min-width: 280px;
+   height: 40px;
+   width: 100%;
+   position: relative;
+}
+.mana_cicrle {
+   border-radius: 50%;
+   width: 28px;
+   height: 28px;
+   border: 1px solid #704f23;
 
+   background: #2649dd;
+   opacity: 80%;
+   text-align: center;
+
+   font-family: 'Lato', sans-serif;
+   color: white;
+   font-size: 0.8rem;
+   justify-content: center;
+   align-items: center;
+   box-shadow: 0 8px 6px -6px black;
+}
 /*============ BOOTSTRAP BREAK POINTS:
 
 Extra small (xs) devices (portrait phones, less than 576px)

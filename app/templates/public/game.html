@@ -41,59 +41,48 @@
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Units</h5>
 
-            <div class="d-flex flex-row">
-               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability:</strong></div>
-            </div>
-            
             {% for unit in units %}
-               <div class="d-flex flex-row">
-                  <div class='flex-fill overflow-hidden px-2 py-1'>
-                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
-                        <img class="img-responsive" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
-                     </a>
-                  </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
-               </div>
+            <div class="d-flex flex-row test-row">
+               <div class="d-flex test_box">
+                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                  </div> <!--End Card-->
+               </div> <!--End Box-->
+            </div>
             {% endfor %}
          </div> <!-- End Units column-->
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Fast+ Spells</h5>
 
-            <div class="d-flex flex-row">
-               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability:</strong></div>
-            </div>
 
             {% for unit in fast_spells %}
-               <div class="d-flex flex-row">
-                  <div class='flex-fill overflow-hidden'>
-                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
-                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
-                     </a>
-                  </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
-               </div>
+            <div class="d-flex flex-row test-row">
+               <div class="d-flex test_box">
+                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                  </div> <!--End Card-->
+               </div> <!--End Box-->
+            </div>
             {% endfor %}
          </div> <!-- End Fast Spells column-->
 
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Slow Spells</h5>
 
-            <div class="d-flex flex-row">
-               <div class='flex-fill overflow-hidden'><strong>Cards</strong></div>
-               <div class='flex-shrink-1 overflow-hidden'><strong>Draw Probability</strong></div>
-            </div>
-
             {% for unit in slow_spells %}
-               <div class="d-flex flex-row">
-                  <div class='flex-fill overflow-hidden'>
-                     <a href="#" class="hover-image" data-image="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg">
-                        <img class="img-responsive p-2" src="../static/img/small cards/{{ unit['cardCode'] }}_resized.jpg" />
-                     </a>
-                  </div>
-                  <div class='flex-fill overflow-hidden m-auto'><p class="p-1 m-auto">{{ unit['chance_string'] }}</p></div>
-               </div>
+            <div class="d-flex flex-row test-row">
+               <div class="d-flex test_box">
+                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                  </div> <!--End Card-->
+               </div> <!--End Box-->
+            </div>
             {% endfor %}
          </div> <!-- End Slow Spells column-->
 

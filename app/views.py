@@ -197,6 +197,7 @@ def game():
             units = json.loads(units.to_json(orient='records'))
             fast_spells = json.loads(fast_spells.to_json(orient='records'))
             slow_spells = json.loads(slow_spells.to_json(orient='records'))
+            print(units)
             return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count, round_n=round_n)
    return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count,round_n=round_n)
 
