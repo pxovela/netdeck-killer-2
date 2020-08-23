@@ -47,7 +47,23 @@
                   <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
                      <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
                      <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                     <div class="container-test test-responsive">
+                        <div class="row justify-content-start">
+                           <div class="col">
+                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                           </div>
+                           <div class="col">
+                              <ul class="bg-dark">
+                                 <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
+                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                               </ul>
+                           </div>
+                        </div>
+                     </div>
                   </div> <!--End Card-->
                </div> <!--End Box-->
             </div>
@@ -63,7 +79,23 @@
                   <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
                      <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
                      <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                     <div class="container-test test-responsive">
+                        <div class="row justify-content-start">
+                           <div class="col">
+                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                           </div>
+                           <div class="col">
+                              <ul class="bg-dark">
+                                 <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
+                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                               </ul>
+                           </div>
+                        </div>
+                     </div>
                   </div> <!--End Card-->
                </div> <!--End Box-->
             </div>
@@ -79,7 +111,23 @@
                   <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
                      <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
                      <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <img class="test-responsive" src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                     <div class="container-test test-responsive">
+                        <div class="row justify-content-start">
+                           <div class="col">
+                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                           </div>
+                           <div class="col">
+                              <ul class="bg-dark">
+                                 <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
+                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                               </ul>
+                           </div>
+                        </div>
+                     </div>
                   </div> <!--End Card-->
                </div> <!--End Box-->
             </div>

@@ -557,11 +557,17 @@ a.top-scroll:hover {
 .test-responsive {
    display: none!important;
    position: absolute;
-   top: 40px;
-   z-index: 9999;
+   top: 50px;
+   z-index: 1;
+   border-radius: 1rem;
+   background-color: transparent!important;
+   width: 450px;
  }
  .test_card:hover .test-responsive {
    display: block!important;
+ }
+ .test-responsive:hover {
+   display: none!important;
  }
 .test_box {
    min-width: 280px;

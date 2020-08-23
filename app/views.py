@@ -44,6 +44,7 @@ def region_select():
 @app.route('/champion_select', methods=['GET', 'POST'])
 def champion_select():
    if request.method == 'POST':
+      session.clear()
       if len(request.form.getlist('region_check'))==0:
          region_error = "Select at least 1 region!"
          return render_template("public/region-select.html", regions=regions, region_error=region_error)
@@ -57,6 +58,7 @@ def champion_select():
          # removed duplicate champts due to leveled up cards
          filtered_champions = filtered_champions[~filtered_champions['cardCode'].str.contains('T')]
          # Turned dataframe into json
+         filtered_champions = filtered_champions[['name','cardCode']]
          filtered_champions = json.loads(filtered_champions.to_json(orient='records'))
          session["filtered_champions"] = filtered_champions
          session["selected_regions"] = selected_regions
@@ -89,22 +91,109 @@ def wavg(group, avg_name, weight_name):
         return (d * w).sum() / w.sum()
     except ZeroDivisionError:
         return d.mean()
+
 # function to caclulate min probability
-def draw_min(group, copies, round_num):
+def draw_min(group, copies, round_num, target):
    no_mul = 4  # Number of draws
    round_n = round_num
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
-   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(target)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(target)
    return float(1 - mull_prob_0 * round_prob_0)
 
-def draw_max(group, copies, round_num):
+def draw_max(group, copies, round_num, target):
    no_mul = 8  # Number of draws
    round_n = round_num
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
-   round_prob_0 = ss.hypergeom(40, copies, round_n).pmf(0)
-   return float(1 - mull_prob_0*round_prob_0)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(target)
+   round_prob_0 = ss.hypergeom(40, copies, round_n).pmf(target)
+   return float(1 - mull_prob_0 * round_prob_0)
+
+def draw_min_1(group, copies, round_num):
+   no_mul = 4  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   return float( mull_prob_0*round_prob_1 + mull_prob_1*round_prob_0)
+
+def draw_max_1(group, copies, round_num):
+   no_mul = 8  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   return float(mull_prob_0 * round_prob_1 + mull_prob_1 * round_prob_0)
+   
+def draw_min_2(group, copies, round_num):
+   no_mul = 4  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+
+   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   return float( mull_prob_0*round_prob_2 + mull_prob_2*round_prob_0 + mull_prob_1*mull_prob_1)
+
+def draw_max_2(group, copies, round_num):
+   no_mul = 8  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+
+   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   return float(mull_prob_0 * round_prob_2 + mull_prob_2 * round_prob_0 + mull_prob_1 * mull_prob_1)
+   
+def draw_min_3(group, copies, round_num):
+   no_mul = 4  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_3 = ss.hypergeom(36, round(copies), round_n).pmf(3)
+
+   mull_prob_3 = ss.hypergeom(40, round(copies), no_mul).pmf(3)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+
+   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*mull_prob_2 + mull_prob_2*mull_prob_1)
+
+def draw_max_3(group, copies, round_num):
+   no_mul = 8  # Number of draws
+   round_n = round_num
+   copies = group[copies]
+   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   round_prob_3 = ss.hypergeom(36, round(copies), round_n).pmf(3)
+
+   mull_prob_3 = ss.hypergeom(40, round(copies), no_mul).pmf(3)
+   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+
+   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
+   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+
+   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
+   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*mull_prob_2 + mull_prob_2*mull_prob_1)
+
+
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
@@ -127,7 +216,7 @@ def game():
             print(champ_error)
             return render_template("public/champion-select.html", regions=regions, filtered_champions=filtered_champions, champ_error=champ_error)
          else:
-            total_matches = potential_decks['matches_played'].sum()
+            #total_matches = potential_decks['matches_played'].sum()
             deck_count = str(potential_decks['deck_code'].count())
             session["deck_count"] = deck_count
             df = []
@@ -153,26 +242,63 @@ def game():
             combined_cards.reset_index(level=0, inplace=True)
             session['round_n'] = 1
             round_n = session.get("round_n", None)
-            combined_cards['draw_min'] = combined_cards.groupby(['cardCode']).apply(draw_min, 'weighted_cards', round_n).reset_index()[0]
-            combined_cards['draw_max'] = combined_cards.groupby(['cardCode']).apply(draw_max, 'weighted_cards', round_n).reset_index()[0]
+
+            combined_cards['draw_min'] = combined_cards.groupby(['cardCode']).apply(draw_min, 'weighted_cards', round_n, 0).reset_index()[0]
+            combined_cards['draw_max'] = combined_cards.groupby(['cardCode']).apply(draw_max, 'weighted_cards', round_n, 0).reset_index()[0]
+
+            combined_cards['draw_min_1'] = combined_cards.groupby(['cardCode']).apply(draw_min_1, 'weighted_cards', round_n).reset_index()[0]
+            combined_cards['draw_max_1'] = combined_cards.groupby(['cardCode']).apply(draw_max_1, 'weighted_cards', round_n).reset_index()[0]
+
+            combined_cards['draw_min_2'] = combined_cards.groupby(['cardCode']).apply(draw_min_2, 'weighted_cards', round_n).reset_index()[0]
+            combined_cards['draw_max_2'] = combined_cards.groupby(['cardCode']).apply(draw_max_2, 'weighted_cards', round_n).reset_index()[0]
+
+            combined_cards['draw_min_3'] = combined_cards.groupby(['cardCode']).apply(draw_min_3, 'weighted_cards', round_n).reset_index()[0]
+            combined_cards['draw_max_3'] = combined_cards.groupby(['cardCode']).apply(draw_max_3, 'weighted_cards', round_n).reset_index()[0]
             # join card details like mana cost, etc
             combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
-            combined_cards.reset_index(level=0, inplace=True)
+            combined_cards.reset_index(level=0, inplace=True, drop=True)
             combined_cards.sort_values(by=['cost'], inplace=True)
             # calculate deck probability of each card
             combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum()
             # caclulate chance of having a card based on probabilty of drawing it + a chance to have the card in the deck
-            combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min']*100
+            combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min'] * 100
             combined_cards['chance_max'] = combined_cards['deck_chance'] * combined_cards['draw_max'] * 100
-            combined_cards['chance_string'] = combined_cards['chance_min'].round().astype(int).astype(str) + '-' + combined_cards['chance_max'].round().astype(int).astype(str)+ '%'
+
+            combined_cards['chance_min_1'] = combined_cards['deck_chance'] * (combined_cards['draw_min_1']) * 100
+            combined_cards['chance_max_1'] = combined_cards['deck_chance'] * (combined_cards['draw_max_1']) * 100
+
+            combined_cards['chance_min_2'] = combined_cards['deck_chance'] * (combined_cards['draw_min_2']) * 100
+            combined_cards['chance_max_2'] = combined_cards['deck_chance'] * (combined_cards['draw_max_2']) * 100
+
+            combined_cards['chance_min_3'] = combined_cards['deck_chance'] * (combined_cards['draw_min_3']) * 100
+            combined_cards['chance_max_3'] = combined_cards['deck_chance'] * (combined_cards['draw_max_3']) * 100
+
+            combined_cards['chance_min_0'] = combined_cards['deck_chance'] * (1 - combined_cards['draw_max']) * 100
+            combined_cards['chance_max_0'] = combined_cards['deck_chance'] * (1 - combined_cards['draw_min']) * 100
+            # format numbers to be displayed properly
+            combined_cards['chance_string'] = combined_cards['chance_min'].round().astype(int).astype(str) + '-' + combined_cards['chance_max'].round().astype(int).astype(str) + '%'
+            
+            combined_cards['deck_chance_string'] = combined_cards['deck_chance'] * 100
+            combined_cards['deck_chance_string'] = combined_cards['deck_chance_string'].round().astype(int).astype(str) + '%'
+
+            combined_cards['weighted_cards_string'] = combined_cards['weighted_cards'].round().astype(int).astype(str)
+
+            combined_cards['chance_string_0'] = combined_cards['chance_min_0'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_0'].round().astype(int).astype(str) + '%'
+
+            combined_cards['chance_string_1'] = combined_cards['chance_min_1'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_1'].round().astype(int).astype(str) + '%'
+
+            combined_cards['chance_string_2'] = combined_cards['chance_min_2'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_2'].round().astype(int).astype(str) + '%'
+
+            combined_cards['chance_string_3'] = combined_cards['chance_min_3'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_3'].round().astype(int).astype(str) + '%'
+            # set session values of probable cards
+            combined_cards = combined_cards[['cardCode', 'weighted_cards', 'cost', 'spellSpeed', 'type', 'supertype', 'name', 'region', 'deck_chance', 'chance_string', 'deck_chance_string', 'weighted_cards_string', 'chance_string_0', 'chance_string_1', 'chance_string_2', 'chance_string_3']]
+            session['combined_cards'] = json.loads(combined_cards.to_json(orient='records'))
+            session.modified = True
+
             # filter out units and spells
             units = combined_cards[combined_cards['type'] == 'Unit']
             fast_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] != 'Slow')]
             slow_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] == 'Slow')]
-            # set session values of probable cards
-            session['units'] = json.loads(units.to_json(orient='records'))
-            session['fast_spells'] = json.loads(fast_spells.to_json(orient='records'))
-            session['slow_spells'] = json.loads(slow_spells.to_json(orient='records'))
             #set initial values for mana and spell mana
             session['mana'] = 10
             mana = session.get("mana", None)
@@ -197,7 +323,6 @@ def game():
             units = json.loads(units.to_json(orient='records'))
             fast_spells = json.loads(fast_spells.to_json(orient='records'))
             slow_spells = json.loads(slow_spells.to_json(orient='records'))
-            print(units)
             return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count, round_n=round_n)
    return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count,round_n=round_n)
 
@@ -211,46 +336,71 @@ def game_update():
    session['round_n'] = request.form.get('round_n')
    round_n = session.get("round_n", None)
    deck_count = session.get("deck_count", None)
-   # laod all session values
+
    filtered_champions = session.get("filtered_champions", None)
-   units = pd.DataFrame.from_dict(pd.json_normalize(session.get("units", None)), orient='columns')
-   fast_spells = pd.DataFrame.from_dict(pd.json_normalize(session.get("fast_spells", None)), orient='columns')
-   slow_spells = pd.DataFrame.from_dict(pd.json_normalize(session.get("slow_spells", None)), orient='columns')
+   combined_cards = pd.DataFrame.from_dict(pd.json_normalize(session.get("combined_cards", None)), orient='columns')
+   #combined_cards.reset_index(inplace=True, drop=True)
+   # recalculate probabilities
+   combined_cards['draw_min'] = combined_cards.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n),0).reset_index()[0]
+   combined_cards['draw_max'] = combined_cards.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n), 0).reset_index()[0]
+   
+   combined_cards['draw_min_1'] = combined_cards.groupby(['cardCode']).apply(draw_min_1, 'weighted_cards', int(round_n)).reset_index()[0]
+   combined_cards['draw_max_1'] = combined_cards.groupby(['cardCode']).apply(draw_max_1, 'weighted_cards', int(round_n)).reset_index()[0]
+
+   combined_cards['draw_min_2'] = combined_cards.groupby(['cardCode']).apply(draw_min_2, 'weighted_cards', int(round_n)).reset_index()[0]
+   combined_cards['draw_max_2'] = combined_cards.groupby(['cardCode']).apply(draw_max_2, 'weighted_cards', int(round_n)).reset_index()[0]
+
+   combined_cards['draw_min_3'] = combined_cards.groupby(['cardCode']).apply(draw_min_3, 'weighted_cards', int(round_n)).reset_index()[0]
+   combined_cards['draw_max_3'] = combined_cards.groupby(['cardCode']).apply(draw_max_3, 'weighted_cards', int(round_n)).reset_index()[0]
+
+   combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min'] * 100
+   combined_cards['chance_max'] = combined_cards['deck_chance'] * combined_cards['draw_max'] * 100
+
+   combined_cards['chance_min_1'] = combined_cards['deck_chance'] * (combined_cards['draw_min_1']) * 100
+   combined_cards['chance_max_1'] = combined_cards['deck_chance'] * (combined_cards['draw_max_1']) * 100
+
+   combined_cards['chance_min_2'] = combined_cards['deck_chance'] * (combined_cards['draw_min_2']) * 100
+   combined_cards['chance_max_2'] = combined_cards['deck_chance'] * (combined_cards['draw_max_2']) * 100
+
+   combined_cards['chance_min_3'] = combined_cards['deck_chance'] * (combined_cards['draw_min_3']) * 100
+   combined_cards['chance_max_3'] = combined_cards['deck_chance'] * (combined_cards['draw_max_3']) * 100
+
+   combined_cards['chance_min_0'] = combined_cards['deck_chance'] * (1 - combined_cards['draw_max']) * 100
+   combined_cards['chance_max_0'] = combined_cards['deck_chance'] * (1 - combined_cards['draw_min']) * 100
+
+   combined_cards['chance_string'] = combined_cards['chance_min'].round().astype(int).astype(str) + '-' + combined_cards['chance_max'].round().astype(int).astype(str) + '%'
+
+   combined_cards['chance_string_0'] = combined_cards['chance_min_0'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_0'].round().astype(int).astype(str) + '%'
+
+   combined_cards['chance_string_1'] = combined_cards['chance_min_1'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_1'].round().astype(int).astype(str) + '%'
+
+   combined_cards['chance_string_2'] = combined_cards['chance_min_2'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_2'].round().astype(int).astype(str) + '%'
+
+   combined_cards['chance_string_3'] = combined_cards['chance_min_3'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_3'].round().astype(int).astype(str) + '%'
+
+   # filter out units and spells
+   units = combined_cards[combined_cards['type'] == 'Unit']
+   fast_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] != 'Slow')]
+   slow_spells = combined_cards[(combined_cards['type'] == 'Spell') & (combined_cards['spellSpeed'] == 'Slow')]
+   # set session values of probable cards
+   combined_cards = combined_cards[['cardCode', 'weighted_cards', 'cost', 'spellSpeed', 'type', 'supertype', 'name', 'region', 'deck_chance', 'chance_string', 'deck_chance_string', 'weighted_cards_string', 'chance_string_0', 'chance_string_1', 'chance_string_2', 'chance_string_3']]
+   session['combined_cards'] = json.loads(combined_cards.to_json(orient='records'))
+   session.modified = True
+
    # filter probable cards by mana values
    if units.empty:
       pass
    else:
-      # recalculate units draw probability
-      units['draw_min'] = units.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
-      units['draw_max'] = units.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
-      units.reset_index(level=0, inplace=True)
-      units['chance_min'] = units['deck_chance'] * units['draw_min'] * 100
-      units['chance_max'] = units['deck_chance'] * units['draw_max'] * 100
-      units['chance_string'] = units['chance_min'].round().astype(int).astype(str) + '-' + units['chance_max'].round().astype(int).astype(str)+ '%'
       units = units[units['cost'] <= int(mana)]
-   
+
    if fast_spells.empty:
       pass
    else:
-      # recalculate fast_spells draw probability
-      fast_spells['draw_min'] = fast_spells.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
-      fast_spells['draw_max'] = fast_spells.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
-      fast_spells.reset_index(level=0, inplace=True)
-      fast_spells['chance_min'] = fast_spells['deck_chance'] * fast_spells['draw_min'] * 100
-      fast_spells['chance_max'] = fast_spells['deck_chance'] * fast_spells['draw_max'] * 100
-      fast_spells['chance_string'] = fast_spells['chance_min'].round().astype(int).astype(str) + '-' + fast_spells['chance_max'].round().astype(int).astype(str)+ '%'
       fast_spells = fast_spells[(fast_spells['cost'] <= int(mana) + int(spell_mana))]
    
    if slow_spells.empty:
       pass
    else:
-      # recalculate slow_spells draw probability
-      slow_spells['draw_min'] = slow_spells.groupby(['cardCode']).apply(draw_min, 'weighted_cards', int(round_n)).reset_index()[0]
-      slow_spells['draw_max'] = slow_spells.groupby(['cardCode']).apply(draw_max, 'weighted_cards', int(round_n)).reset_index()[0]
-      slow_spells.reset_index(level=0, inplace=True)
-      slow_spells['chance_min'] = slow_spells['deck_chance'] * slow_spells['draw_min'] * 100
-      slow_spells['chance_max'] = slow_spells['deck_chance'] * slow_spells['draw_max'] * 100
-      slow_spells['chance_string'] = slow_spells['chance_min'].round().astype(int).astype(str) + '-' + slow_spells['chance_max'].round().astype(int).astype(str)+ '%'
       slow_spells = slow_spells[(slow_spells['cost'] <= int(mana) + int(spell_mana))]
    # Turn cards dataframes into json
    units = json.loads(units.to_json(orient='records'))
