@@ -433,3 +433,7 @@ def api():
       print(opponent_played)
       filtered_champions=session.get("filtered_champions",None)
    return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
+
+@app.route('/sitemap.xml')
+def site_map():
+  return render_template('/sitemap.xml', base_url="https://elusive.gg")
