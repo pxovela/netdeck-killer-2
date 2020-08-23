@@ -2,7 +2,7 @@
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" integrity="sha512-SZgE3m1he0aEF3tIxxnz/3mXu/u/wlMNxQSnE0Cni9j/O8Gs+TjM9tm1NX34nRQ7GiLwUEzwuE3Wv2FLz2667w==" crossorigin="anonymous" />
 {% endblock %}
-{% block title %}Win the game{% endblock %}
+{% block title %}Win LoR Games{% endblock %}
 
 
 
@@ -52,8 +52,8 @@
                            <div class="col">
                               <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
                            </div>
-                           <div class="col">
-                              <ul class="bg-dark">
+                           <div class="col detail_stats">
+                              <ul class="">
                                  <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
                                  <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
                                  <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
@@ -84,8 +84,8 @@
                            <div class="col">
                               <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
                            </div>
-                           <div class="col">
-                              <ul class="bg-dark">
+                           <div class="col detail_stats">
+                              <ul class="">
                                  <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
                                  <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
                                  <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
@@ -116,8 +116,8 @@
                            <div class="col">
                               <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
                            </div>
-                           <div class="col">
-                              <ul class="bg-dark">
+                           <div class="col detail_stats">
+                              <ul class="">
                                  <li>Deck Probability: {{ unit['deck_chance_string'] }}</li>
                                  <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
                                  <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>

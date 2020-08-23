@@ -1,6 +1,6 @@
 {% extends "public/region-select.html" %}
 
-{% block title %}Select Champions{% endblock %}
+{% block title %}Select LoR Champions{% endblock %}
 
 {% block champions %}
 <div class="jumbotron m-0 py-5"> 
@@ -21,12 +21,14 @@
                      {% for card in filtered_champions %}
                         <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
                            <label class="image-checkbox">
-                           <p class="p-0 m-0">{{ card['name'] }}</p>
-                           <img class="img-responsive" src="../../static/img/small cards/{{ card['cardCode'] }}_resized.jpg" />
+                              <div class="d-flex test_champ" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ card['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                                 <p class="align-self-center m-0 px-3"><strong>{{ card['name'] }}</strong></p>
+                              </div>
                            <input type="checkbox" name="champion_check" value="{{ card['name'] }}" />
                            </label>
                         </div>
                      {% endfor %}
+                                          
                   </div>
                </div> <!--End row-->
              </div> <!--End col-->

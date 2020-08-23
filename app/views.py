@@ -19,6 +19,7 @@ import pandas as pd
 import json
 from lor_deckcodes import LoRDeck, CardCodeAndCount
 import scipy.stats as ss
+import numpy as np
 
 #list of all champs and regions
 regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles']
@@ -58,7 +59,8 @@ def champion_select():
          # removed duplicate champts due to leveled up cards
          filtered_champions = filtered_champions[~filtered_champions['cardCode'].str.contains('T')]
          # Turned dataframe into json
-         filtered_champions = filtered_champions[['name','cardCode']]
+         filtered_champions = filtered_champions[['name', 'cardCode']]
+         filtered_champions.sort_values(by=['name'], inplace=True)
          filtered_champions = json.loads(filtered_champions.to_json(orient='records'))
          session["filtered_champions"] = filtered_champions
          session["selected_regions"] = selected_regions
@@ -113,85 +115,95 @@ def draw_min_1(group, copies, round_num):
    no_mul = 4  # Number of draws
    round_n = round_num
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_1 = ss.hypergeom(36, copies, round_n).pmf(1)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
    return float( mull_prob_0*round_prob_1 + mull_prob_1*round_prob_0)
 
 def draw_max_1(group, copies, round_num):
    no_mul = 8  # Number of draws
    round_n = round_num
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_1 = ss.hypergeom(36, copies, round_n).pmf(1)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
    return float(mull_prob_0 * round_prob_1 + mull_prob_1 * round_prob_0)
    
 def draw_min_2(group, copies, round_num):
    no_mul = 4  # Number of draws
    round_n = round_num
+
+   rounded_copies = np.where(group[copies] - 1 > 0, round(group[copies] - 1), 0)
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
-   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_2 = ss.hypergeom(36, copies, round_n).pmf(2)
 
-   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   mull_prob_2 = ss.hypergeom(40, copies, no_mul).pmf(2)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
-   return float( mull_prob_0*round_prob_2 + mull_prob_2*round_prob_0 + mull_prob_1*mull_prob_1)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_1 = ss.hypergeom(36, rounded_copies, round_n).pmf(1)
+   return float( mull_prob_0*round_prob_2 + mull_prob_2*round_prob_0 + mull_prob_1*round_prob_1)
 
 def draw_max_2(group, copies, round_num):
    no_mul = 8  # Number of draws
    round_n = round_num
+  
+   rounded_copies = np.where(group[copies] - 1 > 0, round(group[copies] - 1), 0)
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
-   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
+   round_prob_2 = ss.hypergeom(36, copies, round_n).pmf(2)
 
-   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   mull_prob_2 = ss.hypergeom(40, copies, no_mul).pmf(2)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
-   return float(mull_prob_0 * round_prob_2 + mull_prob_2 * round_prob_0 + mull_prob_1 * mull_prob_1)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_1 = ss.hypergeom(36, rounded_copies, round_n).pmf(1)
+   return float(mull_prob_0 * round_prob_2 + mull_prob_2 * round_prob_0 + mull_prob_1 * round_prob_1)
    
 def draw_min_3(group, copies, round_num):
    no_mul = 4  # Number of draws
    round_n = round_num
+
+   rounded_copies = np.where(group[copies] - 1 > 0, group[copies] - 1, 0)
+   rounded_copies_2 = np.where(group[copies] - 2 > 0, round(group[copies] - 2), 0)
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
    round_prob_3 = ss.hypergeom(36, round(copies), round_n).pmf(3)
 
    mull_prob_3 = ss.hypergeom(40, round(copies), no_mul).pmf(3)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_2 = ss.hypergeom(36, rounded_copies, round_n).pmf(2)
 
-   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
-   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*mull_prob_2 + mull_prob_2*mull_prob_1)
+   mull_prob_2 = ss.hypergeom(40, copies, no_mul).pmf(2)
+   round_prob_1 = ss.hypergeom(36, rounded_copies_2, round_n).pmf(1)
+   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*round_prob_2 + mull_prob_2*round_prob_1)
 
 def draw_max_3(group, copies, round_num):
    no_mul = 8  # Number of draws
    round_n = round_num
+
+   rounded_copies = np.where(group[copies] - 1 > 0, group[copies] - 1, 0)
+   rounded_copies_2 = np.where(group[copies] - 2 > 0, round(group[copies] - 2), 0)
    copies = group[copies]
-   mull_prob_0 = ss.hypergeom(40, round(copies), no_mul).pmf(0)
+   mull_prob_0 = ss.hypergeom(40, copies, no_mul).pmf(0)
    round_prob_3 = ss.hypergeom(36, round(copies), round_n).pmf(3)
 
    mull_prob_3 = ss.hypergeom(40, round(copies), no_mul).pmf(3)
-   round_prob_0 = ss.hypergeom(36, round(copies), round_n).pmf(0)
+   round_prob_0 = ss.hypergeom(36, copies, round_n).pmf(0)
 
-   mull_prob_1 = ss.hypergeom(40, round(copies), no_mul).pmf(1)
-   round_prob_2 = ss.hypergeom(36, round(copies), round_n).pmf(2)
+   mull_prob_1 = ss.hypergeom(40, copies, no_mul).pmf(1)
+   round_prob_2 = ss.hypergeom(36, rounded_copies, round_n).pmf(2)
 
-   mull_prob_2 = ss.hypergeom(40, round(copies), no_mul).pmf(2)
-   round_prob_1 = ss.hypergeom(36, round(copies), round_n).pmf(1)
-   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*mull_prob_2 + mull_prob_2*mull_prob_1)
+   mull_prob_2 = ss.hypergeom(40, copies, no_mul).pmf(2)
+   round_prob_1 = ss.hypergeom(36, rounded_copies_2, round_n).pmf(1)
+   return float( mull_prob_0*round_prob_3 + mull_prob_3*round_prob_0 + mull_prob_1*round_prob_2 + mull_prob_2*round_prob_1)
 
 
 
@@ -251,9 +263,9 @@ def game():
 
             combined_cards['draw_min_2'] = combined_cards.groupby(['cardCode']).apply(draw_min_2, 'weighted_cards', round_n).reset_index()[0]
             combined_cards['draw_max_2'] = combined_cards.groupby(['cardCode']).apply(draw_max_2, 'weighted_cards', round_n).reset_index()[0]
-
-            combined_cards['draw_min_3'] = combined_cards.groupby(['cardCode']).apply(draw_min_3, 'weighted_cards', round_n).reset_index()[0]
-            combined_cards['draw_max_3'] = combined_cards.groupby(['cardCode']).apply(draw_max_3, 'weighted_cards', round_n).reset_index()[0]
+            #print(1- ((1-combined_cards['draw_min']) + combined_cards['draw_min_1']+combined_cards['draw_min_2']))
+            combined_cards['draw_min_3'] = 1- ((1-combined_cards['draw_min']) + combined_cards['draw_min_1']+combined_cards['draw_min_2'])
+            combined_cards['draw_max_3'] = 1- ((1-combined_cards['draw_max']) + combined_cards['draw_max_1']+combined_cards['draw_max_2'])
             # join card details like mana cost, etc
             combined_cards = combined_cards.join(cards.all_cards.set_index('cardCode'), on='cardCode', how='left')
             combined_cards.reset_index(level=0, inplace=True, drop=True)
@@ -279,9 +291,9 @@ def game():
             combined_cards['chance_string'] = combined_cards['chance_min'].round().astype(int).astype(str) + '-' + combined_cards['chance_max'].round().astype(int).astype(str) + '%'
             
             combined_cards['deck_chance_string'] = combined_cards['deck_chance'] * 100
-            combined_cards['deck_chance_string'] = combined_cards['deck_chance_string'].round().astype(int).astype(str) + '%'
+            combined_cards['deck_chance_string'] = combined_cards['deck_chance_string'].round().astype(float).astype(str) + '%'
 
-            combined_cards['weighted_cards_string'] = combined_cards['weighted_cards'].round().astype(int).astype(str)
+            combined_cards['weighted_cards_string'] = combined_cards['weighted_cards'].round(1).astype(float).astype(str)
 
             combined_cards['chance_string_0'] = combined_cards['chance_min_0'].round().astype(int).astype(str) + '-' + combined_cards['chance_max_0'].round().astype(int).astype(str) + '%'
 
@@ -350,8 +362,8 @@ def game_update():
    combined_cards['draw_min_2'] = combined_cards.groupby(['cardCode']).apply(draw_min_2, 'weighted_cards', int(round_n)).reset_index()[0]
    combined_cards['draw_max_2'] = combined_cards.groupby(['cardCode']).apply(draw_max_2, 'weighted_cards', int(round_n)).reset_index()[0]
 
-   combined_cards['draw_min_3'] = combined_cards.groupby(['cardCode']).apply(draw_min_3, 'weighted_cards', int(round_n)).reset_index()[0]
-   combined_cards['draw_max_3'] = combined_cards.groupby(['cardCode']).apply(draw_max_3, 'weighted_cards', int(round_n)).reset_index()[0]
+   combined_cards['draw_min_3'] = 1- ((1-combined_cards['draw_min']) + combined_cards['draw_min_1']+combined_cards['draw_min_2'])
+   combined_cards['draw_max_3'] = 1- ((1-combined_cards['draw_max']) + combined_cards['draw_max_1']+combined_cards['draw_max_2'])
 
    combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min'] * 100
    combined_cards['chance_max'] = combined_cards['deck_chance'] * combined_cards['draw_max'] * 100

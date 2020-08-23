@@ -1,6 +1,6 @@
 {% extends "public/killer-index.html" %}
 
-{% block title %}Select Regions{% endblock %}
+{% block title %}Select LoR Regions{% endblock %}
 
 {% block regions %}
 <div class="jumbotron m-0 py-5"> 
@@ -19,7 +19,7 @@
             <div class="form-check justify-conent-center">
               {% for region in regions %}
               <div class="col-sm-6 col-md-3 p-0 nopad text-center d-inline">
-                <label class="image-checkbox">
+                <label class="image-checkbox region-test">
                   <p class="p-0">{{region}}</p>
                   <img class="img-responsive" src="../../static/img/regions/{{region}}.png" />
                   <input type="checkbox" name="region_check" value="{{region}}" />

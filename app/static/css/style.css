@@ -356,7 +356,7 @@ blockquote .svg-inline--fa {
 	-webkit-box-sizing: border-box;
 	border: 4px solid transparent;
 	margin-bottom: 0;
-	outline: 0;
+   outline: 0;
 }
 .image-checkbox input[type="checkbox"] {
 	display: none;
@@ -487,7 +487,7 @@ a.top-scroll:hover {
       font-size: 2rem;
    }
    .fixed-dark {
-      background-image: url('../img/fixed/apple-mobile.jpg');
+      background-image: url('../img/poro.jpg');
    }
    .fixed-light {
       background-image: url('../img/fixed/office-mobile.jpg');
@@ -561,7 +561,11 @@ a.top-scroll:hover {
    z-index: 1;
    border-radius: 1rem;
    background-color: transparent!important;
-   width: 450px;
+   width: 280px;
+ }
+ .detail_stats {
+   position: absolute;
+   top:60px;
  }
  .test_card:hover .test-responsive {
    display: block!important;
@@ -591,6 +595,23 @@ a.top-scroll:hover {
    justify-content: center;
    align-items: center;
    box-shadow: 0 8px 6px -6px black;
+}
+.test_champ{
+   width: 225px;
+   height: 40px;
+   justify-content: start;
+   align-items: center;
+   color: white;
+   border-radius: 7px;
+   line-height: 100%;
+   text-shadow: .1rem .1rem .5rem black;
+   font-size: 0.8rem;
+}
+.test_champ:hover {
+   transform: scale(.95);
+}
+.region-test:hover {
+   transform: scale(.95);
 }
 /*============ BOOTSTRAP BREAK POINTS:
 
