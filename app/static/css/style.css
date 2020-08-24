@@ -445,6 +445,14 @@ a.top-scroll:hover {
    font-size: 3rem;
    height: 1.7rem;
 }
+.btn-info {
+   background:#c49250!important;
+   border-color: #c49250!important;
+}
+.btn-info:hover {
+   background:#9e6820!important;
+   border-color: #9e6820!important;
+}
 
 /*============= MEDIA QUERIES =============*/
 
