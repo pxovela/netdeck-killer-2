@@ -527,7 +527,7 @@ a.top-scroll:hover {
 	background: #4c70ec;
 }
 .row-first {
-   height:20%;
+   height:100%;
    justify-content: center;
  }
  .container-fluid {
