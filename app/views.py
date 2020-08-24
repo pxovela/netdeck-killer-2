@@ -69,7 +69,11 @@ def champion_select():
 
 # function to filter decks -- Probably can do something shorter than this mess
 def filter_decks(selected_champs):
-   selected_regions = session.get("selected_regions", None)
+   if len(session.get("selected_regions", None)) == 1:
+      selected_regions = session.get("selected_regions", None)
+      selected_regions.append('None')
+   else:
+      selected_regions = session.get("selected_regions", None)
    if len(selected_champs) == 6:
       return deck_details[(deck_details['champion_1'].isin(selected_champs)) & (deck_details['champion_2'].isin(selected_champs)) & (deck_details['champion_3'].isin(selected_champs)) & (deck_details['champion_4'].isin(selected_champs)) & (deck_details['region_1'].isin(selected_regions)) & (deck_details['region_2'].isin(selected_regions))]
    elif len(selected_champs) == 5:
