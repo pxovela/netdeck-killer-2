@@ -29,7 +29,7 @@
 		
 			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				<div class="card-body text-left">
-					For any selected combination of Champions, there is usually more than one version of a deck that your opponent might be playing. You can see the number of matched decks on the top left corner of the window after selecting Champions. <br><br> Data about potential decks is not perfect for now: it's gathered it from streamers' and influencers' videos, and deck stat websites like Mobalytics, LoR Guardian, and others. It shouldn't be an issue once Riot API adds match history data.<br><br> All stats are weighted based on the deck's popularity to provide the most likely probabilities.
+					For any selected combination of Champions, there is usually more than one version of a deck that your opponent might be playing and we need to account for all of them. You can see the number of matched decks on the top left corner of the window after selecting Champions. <br><br> Data about potential decks is not perfect for now but still very useful: deck list is gathered from videos (streamers and influencers) videos, and deck stat websites (Mobalytics, LoR Guardian, and others). Deck list accuracy is expected to increase a lot once Riot API adds match history data.<br><br> All stats are weighted based on each deck's popularity to provide the most likely probabilities.
 				</div>
 			</div>
 			</div>
@@ -44,7 +44,7 @@
 			</div>
 			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				<div class="card-body text-left">
-					These are simple filters. Changing them and pressing Update will display only the cards that could be played given the opponent's remaining mana and spell mana. This filter can be useful when you are about to make a big play and want to focus on potential responses that you might encounter.
+					These are simple filters. Changing them and pressing Update will display only the cards that could be played given the opponent's remaining mana and spell mana. This filter can be useful when you are about to make a big play and want to focus only on potential responses that you might encounter.
 				</div>
 			</div>
 			</div>
@@ -59,7 +59,7 @@
 			</div>
 			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 				<div class="card-body text-left">
-					Under each card name, there is a probability range. It indicates a <strong> chance of having drawn at least one copy since the first round.</strong> The lower end of the range assumes no card replacement in mulligan, while the upper end assumes all four cards were replaced. Probabilities are calculated based on the weighted popularity of decks, card inclusion rate, expected number of copies, and round number.
+					Under each card name, probability range is displayed. It indicates a <strong> chance of having drawn at least one copy since the first round.</strong> <br><br> The lower end of the range assumes no card replacement in mulligan, while the upper end assumes all four cards were replaced. <br><br> Probabilities are calculated based on the weighted popularity of decks, card inclusion rate, expected number of copies, and round number.
 				</div>
 			</div>
 			</div>
@@ -89,7 +89,7 @@
 			</div>
 			<div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
 				<div class="card-body text-left">
-					This rate is a weighted chance of having at least one copy of this card in your opponent's deck. <br><br> Note that draw probability ranges already account for this chance.
+					This rate is a weighted chance of having at least one copy of this card in your opponent's deck (NOT IN HAND). <br><br> Note that draw probability ranges account for this chance.
 				</div>
 			</div>
 			</div>
