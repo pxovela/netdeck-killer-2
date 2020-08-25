@@ -36,6 +36,11 @@ deck_details = pd.read_csv('app/static/deck_details.csv')
 def index():
    return render_template("public/killer-index.html")
 
+# create about view
+@app.route('/about')
+def about():
+   return render_template("public/about.html")
+
 # route for region select
 @app.route('/region_select')
 def region_select():
