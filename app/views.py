@@ -22,7 +22,7 @@ import scipy.stats as ss
 import numpy as np
 
 #list of all champs and regions
-regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles']
+regions = ['Bilgewater', 'Demacia', 'Freljord', 'Ionia', 'Noxus', 'Piltover & Zaun', 'Shadow Isles', 'Targon']
 
 # session secret key
 app.secret_key = 'dljsaklqka24e21cjn!Ew@@dsa5'
@@ -62,7 +62,7 @@ def champion_select():
          #filter champions based on selected regions
          filtered_champions = cards.champions[cards.champions['region'].isin(selected_regions)]
          # removed duplicate champts due to leveled up cards
-         filtered_champions = filtered_champions[~filtered_champions['cardCode'].str.contains('T')]
+         #filtered_champions = filtered_champions[~filtered_champions['cardCode'].str.contains('T1')]
          # Turned dataframe into json
          filtered_champions = filtered_champions[['name', 'cardCode']]
          filtered_champions.sort_values(by=['name'], inplace=True)
