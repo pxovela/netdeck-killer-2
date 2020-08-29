@@ -8,7 +8,7 @@
 
 {% block cards %}
 {% if deck_count %}
-<div class="p-2 mb-0 bg-dark text-white">{{ deck_count }} potential decks found. Displaying combined stats below:</div>
+<div id="deck_count" class="p-2 mb-0 bg-dark text-white">{{ deck_count }} potential decks found. Displaying combined stats below:</div>
 {% endif %}
 <div class="jumbotron m-0 py-5">
    <div class="div container-fluid">
@@ -31,107 +31,109 @@
                   </div>
                </div>
 
-               <div class="d-flex flex-row justify-content-center py-5">
-                  <button class="btn btn-nuno btn-sm">Update</button>
-               </div>
+
                
             </form> <!-- End form-->
          </div> <!-- End form column-->
 
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Units</h5>
-
-            {% for unit in units %}
-            <div class="d-flex flex-row test-row">
-               <div class="d-flex test_box">
-                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
-                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
-                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <div class="container-test test-responsive">
-                        <div class="row justify-content-start">
-                           <div class="col">
-                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
-                           </div>
-                           <div class="col detail_stats">
-                              <ul class="">
-                                 <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
-                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
-                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
-                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
-                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
-                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
-                               </ul>
+            
+            <div id="units_div">
+               {% for unit in units %}
+               <div class="d-flex flex-row test-row">
+                  <div class="d-flex test_box">
+                     <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                        <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                        <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                        <div class="container-test test-responsive">
+                           <div class="row justify-content-start">
+                              <div class="row">
+                                 <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                              </div>
+                              <div class="row detail_stats">
+                                 <ul class="">
+                                    <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
+                                    <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                    <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                    <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                    <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                    <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                                 </ul>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </div> <!--End Card-->
-               </div> <!--End Box-->
-            </div>
-            {% endfor %}
+                     </div> <!--End Card-->
+                  </div> <!--End Box-->
+               </div>
+               {% endfor %}
+            </div> <!-- End units_div -->
          </div> <!-- End Units column-->
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Fast+ Spells</h5>
 
-
-            {% for unit in fast_spells %}
-            <div class="d-flex flex-row test-row">
-               <div class="d-flex test_box">
-                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
-                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
-                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <div class="container-test test-responsive">
-                        <div class="row justify-content-start">
-                           <div class="col">
-                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
-                           </div>
-                           <div class="col detail_stats">
-                              <ul class="">
-                                 <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
-                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
-                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
-                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
-                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
-                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
-                               </ul>
+            <div id="fast_spells_div">
+               {% for unit in fast_spells %}
+               <div class="d-flex flex-row test-row">
+                  <div class="d-flex test_box">
+                     <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                        <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                        <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                        <div class="container-test test-responsive">
+                           <div class="row justify-content-start">
+                              <div class="col">
+                                 <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                              </div>
+                              <div class="col detail_stats">
+                                 <ul class="">
+                                    <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
+                                    <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                    <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                    <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                    <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                    <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                                 </ul>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </div> <!--End Card-->
-               </div> <!--End Box-->
-            </div>
-            {% endfor %}
-         </div> <!-- End Fast Spells column-->
+                     </div> <!--End Card-->
+                  </div> <!--End Box-->
+               </div> <!-- End fast_spells div -->
+               {% endfor %}
+            </div> <!-- End Fast Spells column-->
+         </div> 
 
          <div class="d-flex flex-column p-1">
             <h5 class="text-nuno align-self-center">Slow Spells</h5>
-
-            {% for unit in slow_spells %}
-            <div class="d-flex flex-row test-row">
-               <div class="d-flex test_box">
-                  <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
-                     <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
-                     <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
-                     <div class="container-test test-responsive">
-                        <div class="row justify-content-start">
-                           <div class="col">
-                              <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
-                           </div>
-                           <div class="col detail_stats">
-                              <ul class="">
-                                 <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
-                                 <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
-                                 <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
-                                 <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
-                                 <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
-                                 <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
-                               </ul>
+            <div id="slow_spells_div">
+               {% for unit in slow_spells %}
+               <div class="d-flex flex-row test-row">
+                  <div class="d-flex test_box">
+                     <div class="d-flex test_card" style="background: linear-gradient(90deg, #c49250 30%, rgba(90, 184, 218, 0) 70%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) url('/static/img/small cards/{{ unit['cardCode'] }}_resized.jpg') no-repeat scroll right center;">
+                        <div class="d-flex my-0 mx-1 mana_cicrle"><strong>{{ unit['cost'] }}</strong></div>
+                        <p class="align-self-center m-0">{{ unit['name'] }}<br>{{ unit['chance_string'] }}</p>
+                        <div class="container-test test-responsive">
+                           <div class="row justify-content-start">
+                              <div class="col">
+                                 <img src="../static/img/full cards/{{ unit['cardCode'] }}_full.jpg" />
+                              </div>
+                              <div class="col detail_stats">
+                                 <ul class="">
+                                    <li>Deck Inclusion: {{ unit['deck_chance_string'] }}</li>
+                                    <li>Expected Copies: {{ unit['weighted_cards_string'] }}</li>
+                                    <li>Probability 0 drawn: {{ unit['chance_string_0'] }}</li>
+                                    <li>Probability 1 drawn: {{ unit['chance_string_1'] }}</li>
+                                    <li>Probability 2 drawn: {{ unit['chance_string_2'] }}</li>
+                                    <li>Probability 3 drawn: {{ unit['chance_string_3'] }}</li>
+                                 </ul>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </div> <!--End Card-->
-               </div> <!--End Box-->
-            </div>
-            {% endfor %}
+                     </div> <!--End Card-->
+                  </div> <!--End Box-->
+               </div>
+               {% endfor %}
+            </div> <!-- End slow_spells div -->
          </div> <!-- End Slow Spells column-->
 
       </div> <!-- End 1st row-->
@@ -173,4 +175,5 @@ $("#round_n").slider({
    orientation: 'vertical'
 });
 </script>
+<script src="{{url_for('static',filename='js/game.js')}}?version={{ range(1, 100000) | random }}"></script>
 {% endblock %}

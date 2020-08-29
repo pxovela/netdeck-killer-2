@@ -621,6 +621,18 @@ a.top-scroll:hover {
 .region-test:hover {
    transform: scale(.95);
 }
+/* css for process loader */
+.loader{
+   display: none;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   opacity: 0.5;
+   z-index: 9999;
+   background: #e9e9e9 url(/static/img/fading.gif) center center no-repeat;
+}
 /*============ BOOTSTRAP BREAK POINTS:
 
 Extra small (xs) devices (portrait phones, less than 576px)

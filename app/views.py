@@ -5,7 +5,7 @@ from flask import render_template, session
 # import datetime
 from datetime import datetime
 #import request and redirect
-from flask import request, redirect
+from flask import request, redirect,jsonify
 # import to send back json respons
 from flask import jsonify, make_response
 # os library
@@ -380,7 +380,21 @@ def game_update():
    units = json.loads(units.to_json(orient='records'))
    fast_spells = json.loads(fast_spells.to_json(orient='records'))
    slow_spells = json.loads(slow_spells.to_json(orient='records'))
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions, mana=mana, spell_mana=spell_mana, units=units, fast_spells=fast_spells, slow_spells=slow_spells, deck_count=deck_count, round_n=round_n)
+
+   #prepare response data
+   response_data = {
+                     'regions':regions,
+                     'filtered_champions':filtered_champions,
+                     'mana':mana,
+                     'spell_mana':spell_mana,
+                     'units':units,
+                     'fast_spells':fast_spells, 
+                     'slow_spells':slow_spells,
+                     'deck_count':deck_count,
+                     'round_n':round_n
+                  }
+
+   return jsonify(response_data)
 
 req = ''
 opponent_played=set([])
