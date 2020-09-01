@@ -640,6 +640,9 @@ a.top-scroll:hover {
 .game-jumbo {
    padding-bottom: 340px!important;
 }
+.jumbotron {
+   min-height: 100vh;
+}
 
 /*============ BOOTSTRAP BREAK POINTS:
 
