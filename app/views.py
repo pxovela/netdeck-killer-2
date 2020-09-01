@@ -236,6 +236,7 @@ def game():
             combined_cards.sort_values(by=['cost'], inplace=True)
             # calculate deck probability of each card
             combined_cards['deck_chance'] = combined_cards['matches_played'] / potential_decks['matches_played'].sum()
+            combined_cards = combined_cards[combined_cards['deck_chance']>=0.1]
             # caclulate chance of having a card based on probabilty of drawing it + a chance to have the card in the deck
             combined_cards['chance_min'] = combined_cards['deck_chance'] * combined_cards['draw_min'] * 100
             combined_cards['chance_max'] = combined_cards['deck_chance'] * combined_cards['draw_max'] * 100
