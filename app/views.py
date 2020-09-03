@@ -5,7 +5,7 @@ from flask import render_template, session
 # import datetime
 from datetime import datetime
 #import request and redirect
-from flask import request, redirect,jsonify
+from flask import request, redirect, jsonify
 # import to send back json respons
 from flask import jsonify, make_response
 # os library
@@ -399,17 +399,15 @@ def game_update():
 
 req = ''
 opponent_played=set([])
-@app.route('/api', methods=['GET','POST'])
+@app.route('/api', methods=['GET', 'POST'])
 def api():
-   if request.data:
-      req = json.loads(request.data)
-      current_cards = req['Rectangles']
-      current_cards = [x for x in current_cards if str(x['LocalPlayer']) == 'False' and str(x['CardCode']) != 'face']
-      for card in current_cards:
-         opponent_played.add(card['CardCode'])
+   req = json.loads(request.data)
+   current_cards = req['Rectangles']
+   current_cards = [x for x in current_cards if str(x['LocalPlayer']) == 'False' and str(x['CardCode']) != 'face']
+   for card in current_cards:
+      opponent_played.add(card['CardCode'])
       print(opponent_played)
-      filtered_champions=session.get("filtered_champions",None)
-   return render_template("public/game.html", regions=regions, filtered_champions=filtered_champions)
+   return 'OK'
 
 @app.route('/sitemap.xml')
 def site_map():
