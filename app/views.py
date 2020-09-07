@@ -402,11 +402,13 @@ opponent_played=set([])
 @app.route('/api', methods=['GET', 'POST'])
 def api():
    req = json.loads(request.data)
-   current_cards = req['Rectangles']
-   current_cards = [x for x in current_cards if str(x['LocalPlayer']) == 'False' and str(x['CardCode']) != 'face']
-   for card in current_cards:
-      opponent_played.add(card['CardCode'])
-      print(opponent_played)
+   print(request.headers)
+   print(req)
+   #current_cards = req['Rectangles']
+   #current_cards = [x for x in current_cards if str(x['LocalPlayer']) == 'False' and str(x['CardCode']) != 'face']
+   #for card in current_cards:
+   #   opponent_played.add(card['CardCode'])
+   #   print(opponent_played)
    return 'OK'
 
 @app.route('/sitemap.xml')
